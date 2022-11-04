@@ -28,7 +28,7 @@
 <meta property="og:description" content="用来做一些毕业设计选题的笔记基于网络化边缘控制器  设计应用场景 做硬件和算法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-04T07:49:03.000Z">
-<meta property="article:modified_time" content="2022-11-04T11:54:54.667Z">
+<meta property="article:modified_time" content="2022-11-04T14:17:40.335Z">
 <meta property="article:author" content="tomoyya">
 <meta name="twitter:card" content="summary">
 
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-04 15:49:03 / 修改时间：19:54:54" itemprop="dateCreated datePublished" datetime="2022-11-04T15:49:03+08:00">2022-11-04</time>
+              <time title="创建时间：2022-11-04 15:49:03 / 修改时间：22:17:40" itemprop="dateCreated datePublished" datetime="2022-11-04T15:49:03+08:00">2022-11-04</time>
             </span>
 
           
@@ -206,8 +206,51 @@
 
 
 
-<h1 id="1一些概念"><a href="#1一些概念" class="headerlink" title="1一些概念"></a>1一些概念</h1><h2 id="1-1边缘计算是什么"><a href="#1-1边缘计算是什么" class="headerlink" title="1.1边缘计算是什么"></a>1.1<a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/serverless/glossary/what-is-edge-computing/">边缘计算是什么</a></h2><p>边缘计算是一种致力于使计算尽可能靠近数据源、以减少延迟和带宽使用的网络理念。简而言之，边缘计算意味着在云端运行更少的进程，将这些进程移动到本地，例如用户的计算机、<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/cloud/what-is-the-cloud/">IoT 设备</a>或<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ddos/glossary/internet-of-things-iot/">边缘服务器</a>。将计算放到网络边缘可以最大程度地减少<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/serverless/glossary/client-side-vs-server-side/">客户端和服务器</a>之间必须进行的长距离通信量。</p>
-<h2 id="1-2边缘计算解决了什么问题"><a href="#1-2边缘计算解决了什么问题" class="headerlink" title="1.2边缘计算解决了什么问题"></a>1.2边缘计算解决了什么问题</h2><h1 id="2-相关的研究方向"><a href="#2-相关的研究方向" class="headerlink" title="2.相关的研究方向"></a>2.相关的研究方向</h1><h1 id="3-相关的应用方向"><a href="#3-相关的应用方向" class="headerlink" title="3.相关的应用方向"></a>3.相关的应用方向</h1>
+<h1 id="1一些概念"><a href="#1一些概念" class="headerlink" title="1一些概念"></a>1一些概念</h1><h2 id="1-1什么是边缘计算"><a href="#1-1什么是边缘计算" class="headerlink" title="1.1什么是边缘计算"></a>1.1<a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/serverless/glossary/what-is-edge-computing/">什么是边缘计算</a></h2><p>边缘计算是一种致力于使计算尽可能靠近数据源、以减少延迟和带宽使用的网络理念。简而言之，边缘计算意味着在云端运行更少的进程，将这些进程移动到本地，例如用户的计算机、<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/cloud/what-is-the-cloud/">IoT 设备</a>或<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ddos/glossary/internet-of-things-iot/">边缘服务器</a>。将计算放到网络边缘可以最大程度地减少<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/serverless/glossary/client-side-vs-server-side/">客户端和服务器</a>之间必须进行的长距离通信量。</p>
+<p>网络边缘在地理位置上靠近设备，与<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/cdn/glossary/origin-server/">源站</a>和云服务器不同，后者可能与它们相互通信的设备相距很远。</p>
+<h2 id="1-2什么是边缘控制器"><a href="#1-2什么是边缘控制器" class="headerlink" title="1.2什么是边缘控制器"></a>1.2什么是边缘控制器</h2><p>边缘计算作为云计算的一项重要补充，在构建互联工厂中的作用正越来越受到重视。边缘计算实现了数据在网络边缘侧的分析、处理与储存，不仅减少了对云端依赖，也提高了数据的安全性。不管是因为云计算本身，还是网络传输受限，或者是担心数据安全，边缘计算是时下构建智能化工厂过程中必须优先考虑的内容之一。<em><strong>虽然这是基于PC的控制器，但边缘控制器也不等同于单独的工业控制计算机，它将PLC、PC和运动控制器集成到同一台设备里，兼具数据处理和逻辑控制，两种任务可以同时进行，又互不干扰</strong></em>。</p>
+<p>边缘控制器在边缘计算中担任着极其重要的角色，通俗的来讲，就是在比如家里的家用电器在运行的过程中出现异常，甚至产生短路失火等情况时，我们家里没有灭火器，需要拨打119通知消防员来到达现场灭火，而我们的边缘控制器就相当于灭火器，依靠边缘控制器的高实时性，在发现失火的时候就可以立即扑灭。</p>
+<h2 id="1-2边缘计算解决了什么问题"><a href="#1-2边缘计算解决了什么问题" class="headerlink" title="1.2边缘计算解决了什么问题"></a>1.2<a target="_blank" rel="noopener" href="https://www.cloudflare.com/zh-cn/learning/serverless/glossary/what-is-edge-computing/">边缘计算解决了什么问题</a></h2><h3 id="1-2-1计算模型的发展"><a href="#1-2-1计算模型的发展" class="headerlink" title="1.2.1计算模型的发展"></a>1.2.1计算模型的发展</h3><p>最早期的计算机是巨大笨重的机器，只能直接访问或通过终端访问，这些终端基本上是计算机的扩展。随着个人计算机的发明，计算可以用一种更加分散的方式进行。曾几何时，<strong>个人计算</strong>是占主导地位的计算模式。应用程序在本地运行，数据存储于用户的设备上，有时在本地数据中心内。</p>
+<p><strong>云计算</strong>是更新的发展，与这种基于本地的计算相比，它提供了许多优势。云服务集中在供应商管理的“云”(或数据中心的集合)中，可以从互联网上的任何设备访问。</p>
+<p>但是，由于用户与托管云服务的数据中心之间的距离，云计算可能会引入<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/performance/glossary/what-is-latency/">延迟</a>。<em><strong>边缘计算使计算更接近最终用户，以最小化数据必须传输的距离，同时仍然保留云计算的集中化性质</strong></em>。</p>
+<p>总而言之：</p>
+<ul>
+<li><p>早期计算：集中式应用程序，仅在一台孤立的计算机上运行</p>
+</li>
+<li><p>个人计算：本地运行的去中心化应用程序</p>
+</li>
+<li><p>云计算：在数据中心运行的集中式应用程序</p>
+</li>
+<li><p>边缘计算：在靠近用户的地方——设备本身或者网络边缘——运行的集中式应用程序</p>
+</li>
+</ul>
+<h3 id="1-2-2边缘计算的例子"><a href="#1-2-2边缘计算的例子" class="headerlink" title="1.2.2边缘计算的例子"></a>1.2.2边缘计算的例子</h3><p>想象一座由数十个高清 IoT 摄像机监控的建筑物。这些“笨拙的”摄像头仅仅输出原始视频信号，持续将信号<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/performance/what-is-streaming/">串流</a>到云服务器。在云服务器上，来自所有摄像头的视频输出都会通过运动检测应用程序，以确保仅将有活动的剪辑保存到服务器的数据库中。这意味着建筑物的互联网基础设施将承受持续且显著的压力，因为高容量的视频素材传输会消耗大量带宽。此外，云服务器上的负载极高，因为必须同时处理来自所有摄像头的视频素材。</p>
+<p>现在，假设运动传感器计算移至网络边缘。如果每个摄像头都使用自己的内部计算机来运行运动检测应用程序，然后根据需要将素材发送到云服务器，这样会如何？这将导致带宽使用量显著减少，因为很多镜头永远不必传输到云服务器。</p>
+<p>此外，云服务器现在仅负责存储重要素材，这意味着服务器可以与更多数量的摄像头通信而不会过载。这就是边缘计算的样子。</p>
+<h3 id="1-2-3边缘计算的更多应用"><a href="#1-2-3边缘计算的更多应用" class="headerlink" title="1.2.3边缘计算的更多应用"></a>1.2.3边缘计算的更多应用</h3><p>边缘计算可以整合到各种各样的应用程序、产品和服务中。如下是几种可能性：</p>
+<ul>
+<li>安全系统监控：如上所述。</li>
+<li>IoT 设备：连接到互联网的智能设备可以从在设备本身而不是在云端运行代码中受益，以实现更高效的用户交互。</li>
+<li>自动驾驶汽车：自动驾驶汽车需要实时做出反应，无需等待服务器的指令。</li>
+<li>更高效的缓存：通过在 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/cdn/what-is-a-cdn/">CDN</a> 边缘网络上运行代码，应用程序可以自定义内容的缓存方式，以便更高效为用户提供内容。</li>
+<li>医疗监控设备：医疗设备能实时响应，无需等待来自云服务器的指令，这一点至关重要。</li>
+<li>视频会议：交互式实时视频需要相当多的带宽，因此将后端进程移近视频源可以减少滞后和延迟。</li>
+</ul>
+<h3 id="1-2-4边缘计算的优点"><a href="#1-2-4边缘计算的优点" class="headerlink" title="1.2.4边缘计算的优点"></a>1.2.4边缘计算的优点</h3><h4 id="节省成本"><a href="#节省成本" class="headerlink" title="节省成本"></a>节省成本</h4><p>如上例所示，边缘计算有助于最大程度地减少带宽使用量和服务器资源消耗。带宽和云资源是有限的，并且需要花费成本。Statista <a target="_blank" rel="noopener" href="https://www.statista.com/statistics/471264/iot-number-of-connected-devices-worldwide/">预测</a>，随着每个家庭和办公室都配备智能相机、打印机、温度调节装置甚至烤面包机，到 2025 年，全球将安装超过 750 亿个 IoT 设备。为了支持所有这些设备，必须将大量计算移到边缘。</p>
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>将流程移至边缘的另一个重要优势是减少延迟。设备每次需要与某处的远程服务器通信时，都会造成延迟。例如，同一办公室中的两个同事在 IM 平台上聊天可能会遇到相当大的延迟，因为设备必须将每条消息路由到建筑物外，与全球某处的服务器通信，然后再传回，最后才能出现在收信人的屏幕上。如果将该过程放到边缘，并且由公司的内部路由器负责传输办公室内的聊天记录，则不会出现明显的延迟。</p>
+<p>同样，当各种 Web 应用程序的用户遇到必须与外部服务器进行通信的进程时，他们将感受到延迟。这些延迟的持续时间将根据可用带宽和服务器的位置而变化，但是可以通过将更多进程引入网络边缘来完全避免这些延迟。</p>
+<h4 id="新功能"><a href="#新功能" class="headerlink" title="新功能"></a>新功能</h4><p>此外，边缘计算可以提供以前无法提供的新功能。例如，公司可以使用边缘计算在边缘处理和分析数据，使得实时处理成为可能。</p>
+<p>概括而言，边缘计算的主要优势在于：</p>
+<ul>
+<li>减少延迟</li>
+<li>减少带宽使用和相关成本</li>
+<li>减少服务器资源消耗和相关成本</li>
+<li>增加功能</li>
+</ul>
+<h3 id="1-2-5边缘计算的缺点"><a href="#1-2-5边缘计算的缺点" class="headerlink" title="1.2.5边缘计算的缺点"></a>1.2.5边缘计算的缺点</h3><p>边缘计算的一个缺点是会增加攻击途径。随着更多“智能”设备的加入，例如具有强大内置计算机的边缘服务器和 IoT 设备，给恶意行为者带来入侵这些设备的新机会。</p>
+<p>边缘计算的另一个缺点是它需要更多的本地硬件。例如，虽然 IoT 摄像头需要内置计算机才能将原始视频数据发送到 Web 服务器，但如果要运行自己的运动检测算法，就需要一台功能更强大、有更大处理能力的复杂计算机。但是，硬件成本的下降使得构建更智能设备的成本变得更为低廉。</p>
+<p>完全减轻额外硬件需求的一种方法是利用边缘服务器。例如，借助 Cloudflare 分散在全球各地的 275 个边缘服务器组成的网络，Cloudflare 的客户可以使用 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/products/cloudflare-workers/">Cloudflare Workers</a> 在全球范围内运行边缘代码。</p>
+<h1 id="2-相关的研究方向"><a href="#2-相关的研究方向" class="headerlink" title="2.相关的研究方向"></a>2.相关的研究方向</h1><h1 id="3-相关的应用方向"><a href="#3-相关的应用方向" class="headerlink" title="3.相关的应用方向"></a>3.相关的应用方向</h1>
     </div>
 
     
@@ -284,7 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">1一些概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">1.1边缘计算是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">1.2边缘计算解决了什么问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%9B%B8%E5%85%B3%E7%9A%84%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">2.相关的研究方向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BA%94%E7%94%A8%E6%96%B9%E5%90%91"><span class="nav-number">3.</span> <span class="nav-text">3.相关的应用方向</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">1一些概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1%E4%BB%80%E4%B9%88%E6%98%AF%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">1.1什么是边缘计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E4%BB%80%E4%B9%88%E6%98%AF%E8%BE%B9%E7%BC%98%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">1.2什么是边缘控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">1.2边缘计算解决了什么问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.2.1计算模型的发展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.2.2边缘计算的例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%9A%84%E6%9B%B4%E5%A4%9A%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.2.3边缘计算的更多应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.3.4.</span> <span class="nav-text">1.2.4边缘计算的优点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8A%82%E7%9C%81%E6%88%90%E6%9C%AC"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">节省成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%83%BD"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">新功能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-number">1.3.5.</span> <span class="nav-text">1.2.5边缘计算的缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%9B%B8%E5%85%B3%E7%9A%84%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">2.相关的研究方向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%9B%B8%E5%85%B3%E7%9A%84%E5%BA%94%E7%94%A8%E6%96%B9%E5%90%91"><span class="nav-number">3.</span> <span class="nav-text">3.相关的应用方向</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
