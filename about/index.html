@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"tomoyya.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":240},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="也有忧愁             loveHeart                   html,         body {             height: 100%;             padding: 0;             margin: 0;             background: #000;         }         canvas {">
+  <meta name="description" content="也有忧愁           loveHeart                   html,         body {             height: 100%;             padding: 0;             margin: 0;             background: #000;         }         canvas {">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于我">
 <meta property="og:url" content="https://tomoyya.github.io/about/index.html">
 <meta property="og:site_name" content="tomoyya">
-<meta property="og:description" content="也有忧愁             loveHeart                   html,         body {             height: 100%;             padding: 0;             margin: 0;             background: #000;         }         canvas {">
+<meta property="og:description" content="也有忧愁           loveHeart                   html,         body {             height: 100%;             padding: 0;             margin: 0;             background: #000;         }         canvas {">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-03T09:13:42.000Z">
-<meta property="article:modified_time" content="2022-11-10T11:50:44.160Z">
+<meta property="article:modified_time" content="2022-11-10T12:32:49.697Z">
 <meta property="article:author" content="tomoyya">
 <meta name="twitter:card" content="summary">
 
@@ -182,8 +182,6 @@
       
       <div class="post-body">
           <p>也有忧愁</p>
-<html>
-
 <head>
     <meta charset="utf-8">
     <title>loveHeart</title>
@@ -217,212 +215,18 @@
         }
     </style>
 </head>
-
 <body>
 
-<pre><code>&lt;p&gt;致我最爱的&lt;/p&gt;
-&lt;canvas id=&quot;pinkboard&quot;&gt;&lt;/canvas&gt;
-&lt;script&gt;
-    var settings = &#123;
-        particles: &#123;
-            length: 600,  // 爱心的大小
-            duration: 2,  // 爱心扩散速度，越小速度越快
-            velocity: 100,  // 爱心扩散速度，越小速度越慢
-            effect: -0.75, // 爱心收缩效果，比如：1扩散，-2收缩
-            size: 32, // 爱心数量
-        &#125;,
-    &#125;;  (function () &#123; var b = 0; var c = [&quot;ms&quot;, &quot;moz&quot;, &quot;webkit&quot;, &quot;o&quot;]; for (var a = 0; a &lt; c.length &amp;&amp; !window.requestAnimationFrame; ++a) &#123; window.requestAnimationFrame = window[c[a] + &quot;RequestAnimationFrame&quot;]; window.cancelAnimationFrame = window[c[a] + &quot;CancelAnimationFrame&quot;] || window[c[a] + &quot;CancelRequestAnimationFrame&quot;] &#125; if (!window.requestAnimationFrame) &#123; window.requestAnimationFrame = function (h, e) &#123; var d = new Date().getTime(); var f = Math.max(0, 16 - (d - b)); var g = window.setTimeout(function () &#123; h(d + f) &#125;, f); b = d + f; return g &#125; &#125; if (!window.cancelAnimationFrame) &#123; window.cancelAnimationFrame = function (d) &#123; clearTimeout(d) &#125; &#125; &#125;());     var Point = (function () &#123;
-        function Point(x, y) &#123;
-            this.x = (typeof x !== &#39;undefined&#39;) ? x : 0;
-            this.y = (typeof y !== &#39;undefined&#39;) ? y : 0;
-        &#125;
-        Point.prototype.clone = function () &#123;
-            return new Point(this.x, this.y);
-        &#125;;
-        Point.prototype.length = function (length) &#123;
-            if (typeof length == &#39;undefined&#39;)
-                return Math.sqrt(this.x * this.x + this.y * this.y);
-            this.normalize();
-            this.x *= length;
-            this.y *= length;
-            return this;
-        &#125;;
-        Point.prototype.normalize = function () &#123;
-            var length = this.length();
-            this.x /= length;
-            this.y /= length;
-            return this;
-        &#125;;
-        return Point;
-    &#125;)();
-    var Particle = (function () &#123;
-        function Particle() &#123;
-            this.position = new Point();
-            this.velocity = new Point();
-            this.acceleration = new Point();
-            this.age = 0;
-        &#125;
-        Particle.prototype.initialize = function (x, y, dx, dy) &#123;
-            this.position.x = x;
-            this.position.y = y;
-            this.velocity.x = dx;
-            this.velocity.y = dy;
-            this.acceleration.x = dx * settings.particles.effect;
-            this.acceleration.y = dy * settings.particles.effect;
-            this.age = 0;
-        &#125;;
-        Particle.prototype.update = function (deltaTime) &#123;
-            this.position.x += this.velocity.x * deltaTime;
-            this.position.y += this.velocity.y * deltaTime;
-            this.velocity.x += this.acceleration.x * deltaTime;
-            this.velocity.y += this.acceleration.y * deltaTime;
-            this.age += deltaTime;
-        &#125;;
-        Particle.prototype.draw = function (context, image) &#123;
-            function ease(t) &#123;
-                return (--t) * t * t + 1;
-            &#125;
-            var size = image.width * ease(this.age / settings.particles.duration);
-            context.globalAlpha = 1 - this.age / settings.particles.duration;
-            context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
-        &#125;;
-        return Particle;
-    &#125;)();
-    var ParticlePool = (function () &#123;
-        var particles,
-            firstActive = 0,
-            firstFree = 0,
-            duration = settings.particles.duration;
-        function ParticlePool(length) &#123;
-            // create and populate particle pool
-            particles = new Array(length);
-            for (var i = 0; i &lt; particles.length; i++)
-                particles[i] = new Particle();
-        &#125;
-        ParticlePool.prototype.add = function (x, y, dx, dy) &#123;
-            particles[firstFree].initialize(x, y, dx, dy);
-            // handle circular queue
-            firstFree++;
-            if (firstFree == particles.length) firstFree = 0;
-            if (firstActive == firstFree) firstActive++;
-            if (firstActive == particles.length) firstActive = 0;
-        &#125;;
-        ParticlePool.prototype.update = function (deltaTime) &#123;
-            var i;
-            // update active particles
-            if (firstActive &lt; firstFree) &#123;
-                for (i = firstActive; i &lt; firstFree; i++)
-                    particles[i].update(deltaTime);
-            &#125;
-            if (firstFree &lt; firstActive) &#123;
-                for (i = firstActive; i &lt; particles.length; i++)
-                    particles[i].update(deltaTime);
-                for (i = 0; i &lt; firstFree; i++)
-                    particles[i].update(deltaTime);
-            &#125;
-            // remove inactive particles
-            while (particles[firstActive].age &gt;= duration &amp;&amp; firstActive != firstFree) &#123;
-                firstActive++;
-                if (firstActive == particles.length) firstActive = 0;
-            &#125;
-        &#125;;
-        ParticlePool.prototype.draw = function (context, image) &#123;
-            // draw active particles
-            if (firstActive &lt; firstFree) &#123;
-                for (i = firstActive; i &lt; firstFree; i++)
-                    particles[i].draw(context, image);
-            &#125;
-            if (firstFree &lt; firstActive) &#123;
-                for (i = firstActive; i &lt; particles.length; i++)
-                    particles[i].draw(context, image);
-                for (i = 0; i &lt; firstFree; i++)
-                    particles[i].draw(context, image);
-            &#125;
-        &#125;;
-        return ParticlePool;
-    &#125;)();
-    (function (canvas) &#123;
-        var context = canvas.getContext(&#39;2d&#39;),
-            particles = new ParticlePool(settings.particles.length),
-            particleRate = settings.particles.length / settings.particles.duration, // particles/sec
-            time;
-        // get point on heart with -PI &lt;= t &lt;= PI
-        function pointOnHeart(t) &#123;
-            return new Point(
-                160 * Math.pow(Math.sin(t), 3),
-                130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
-            );
-        &#125;
-        // creating the particle image using a dummy canvas
-        var image = (function () &#123;
-            var canvas = document.createElement(&#39;canvas&#39;),
-                context = canvas.getContext(&#39;2d&#39;);
-            canvas.width = settings.particles.size;
-            canvas.height = settings.particles.size;
-            // helper function to create the path
-            function to(t) &#123;
-                var point = pointOnHeart(t);
-                point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
-                point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
-                return point;
-            &#125;
-            // create the path
-            context.beginPath();
-            var t = -Math.PI;
-            var point = to(t);
-            context.moveTo(point.x, point.y);
-            while (t &lt; Math.PI) &#123;
-                t += 0.01; // baby steps!
-                point = to(t);
-                context.lineTo(point.x, point.y);
-            &#125;
-            context.closePath();
-            // create the fill
-            context.fillStyle = &#39;#ea80b0&#39;;
-            context.fill();
-            // create the image
-            var image = new Image();
-            image.src = canvas.toDataURL();
-            return image;
-        &#125;)();
-        // render that thing!
-        function render() &#123;
-            // next animation frame
-            requestAnimationFrame(render);
-            // update time
-            var newTime = new Date().getTime() / 1000,
-                deltaTime = newTime - (time || newTime);
-            time = newTime;
-            // clear canvas
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            // create new particles
-            var amount = particleRate * deltaTime;
-            for (var i = 0; i &lt; amount; i++) &#123;
-                var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
-                var dir = pos.clone().length(settings.particles.velocity);
-                particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
-            &#125;
-            // update and draw particles
-            particles.update(deltaTime);
-            particles.draw(context, image);
-        &#125;
-        // handle (re-)sizing of the canvas
-        function onResize() &#123;
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
-        &#125;
-        window.onresize = onResize;
-        // delay rendering bootstrap
-        setTimeout(function () &#123;
-            onResize();
-            render();
-        &#125;, 10);
-    &#125;)(document.getElementById(&#39;pinkboard&#39;));
-&lt;/script&gt;
-</code></pre>
+<p>
+     致我最爱的
+</p>
+
+
 </body>
 
-</html>
+
+
+
 
 
       </div>
