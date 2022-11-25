@@ -20,16 +20,17 @@
     var CONFIG = {"hostname":"tomoyya.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false,"width":240},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="我有很多秘密，如果你愿意听的话">
+  <meta name="description" content="记录本科毕业设计飞行器的元件清单及用到的工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="post">
+<meta property="og:title" content="无线射频驱动的飞行器硬件以及工具清单">
 <meta property="og:url" content="https://tomoyya.github.io/2022/11/24/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1-%E6%96%87%E7%8C%AE/99-%E7%A1%AC%E4%BB%B6%E6%B8%85%E5%8D%95/index.html">
 <meta property="og:site_name" content="tomoyya">
-<meta property="og:description" content="我有很多秘密，如果你愿意听的话">
+<meta property="og:description" content="记录本科毕业设计飞行器的元件清单及用到的工具">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-24T11:16:09.000Z">
-<meta property="article:modified_time" content="2022-11-24T11:16:09.697Z">
+<meta property="article:modified_time" content="2022-11-24T13:37:37.648Z">
 <meta property="article:author" content="tomoyya">
+<meta property="article:tag" content="毕业设计">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://tomoyya.github.io/2022/11/24/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1-%E6%96%87%E7%8C%AE/99-%E7%A1%AC%E4%BB%B6%E6%B8%85%E5%8D%95/">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>post | tomoyya</title>
+  <title>无线射频驱动的飞行器硬件以及工具清单 | tomoyya</title>
   
 
 
@@ -175,7 +176,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          post
+          无线射频驱动的飞行器硬件以及工具清单
         </h1>
 
         <div class="post-meta">
@@ -184,8 +185,22 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-11-24 19:16:09" itemprop="dateCreated datePublished" datetime="2022-11-24T19:16:09+08:00">2022-11-24</time>
+              <time title="创建时间：2022-11-24 19:16:09 / 修改时间：21:37:37" itemprop="dateCreated datePublished" datetime="2022-11-24T19:16:09+08:00">2022-11-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">毕业设计</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/%E7%A1%AC%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">硬件</span></a>
+                </span>
             </span>
 
           
@@ -199,7 +214,366 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <blockquote>
+<p>记录本科毕业设计飞行器的元件清单及用到的工具</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="1-元件清单"><a href="#1-元件清单" class="headerlink" title="1 元件清单"></a>1 元件清单</h1><h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><table>
+<thead>
+<tr>
+<th align="left">子模块</th>
+<th align="left">元件</th>
+<th align="left">元件ID</th>
+<th align="left">制造商/产品编号</th>
+<th align="left">质量(mg)</th>
+<th align="left">主要参数</th>
+<th>购买链接</th>
+<th>数据手册</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Power receiver</td>
+<td align="left">Balan</td>
+<td align="left">B1</td>
+<td align="left">TDK / HHM1907B1</td>
+<td align="left">0.70</td>
+<td align="left">4.90-5.95 GHz</td>
+<td><a target="_blank" rel="noopener" href="https://so.szlcsc.com/global.html?k=tdk%2520%252f%2520hhm1907b1&hot-key=">1</a></td>
+<td><a target="_blank" rel="noopener" href="https://product.tdk.com/en/system/files?file=dam/doc/product/rf/rf/balun/catalog/rf_balun_hhm1907b1_en.pdf">1</a></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SBD</td>
+<td align="left">D1</td>
+<td align="left">AVAGO / HSMS-282E</td>
+<td align="left">5.8</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Zener diode</td>
+<td align="left">D2</td>
+<td align="left">DIODES / GDZ6V0LP3-7</td>
+<td align="left">0.20</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">SBD</td>
+<td align="left">D3</td>
+<td align="left">STMicroelectronics / BAT30F4</td>
+<td align="left">0.12</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Voltage regulator</td>
+<td align="left">IC1</td>
+<td align="left">TOSHIBA / TCR3UG33B</td>
+<td align="left">0.26</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C1</td>
+<td align="left">SAMSUNG / CL03C100JA3GNNC</td>
+<td align="left">0.10</td>
+<td align="left">10 pF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C2</td>
+<td align="left">AVX / F980J107MMAAXE</td>
+<td align="left">7.9</td>
+<td align="left">100 μF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C3</td>
+<td align="left">Vishay / 298W107X0004M2T</td>
+<td align="left">6.3</td>
+<td align="left">100 μF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">DC-DC converter</td>
+<td align="left">SBD</td>
+<td align="left">D4a-i</td>
+<td align="left">NXP / PMEG4005AESF</td>
+<td align="left">0.7</td>
+<td align="left">-</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C4</td>
+<td align="left">Murata / GRJ155R60J106ME11D</td>
+<td align="left">3.0</td>
+<td align="left">10 μF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C5a-i</td>
+<td align="left">Murata / GRM155R61H105KE05D</td>
+<td align="left">1.6</td>
+<td align="left">1 μF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Resister</td>
+<td align="left">R1</td>
+<td align="left">ROHM / KTR03EZPF1005</td>
+<td align="left">1.8</td>
+<td align="left">10 MΩ</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Resister</td>
+<td align="left">R2</td>
+<td align="left">Vishay / CRCW020152K3FKED</td>
+<td align="left">0.17</td>
+<td align="left">52.3 kΩ</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Inductor</td>
+<td align="left">L1</td>
+<td align="left">Murata / DFE201612E-2R2MP2</td>
+<td align="left">18.8</td>
+<td align="left">2.2 μH</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">nMOSFET</td>
+<td align="left">T1</td>
+<td align="left">Toshiba / SSM3K59CTB</td>
+<td align="left">0.75</td>
+<td align="left">Max. 40V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">DC-DC controller</td>
+<td align="left">IC2</td>
+<td align="left">TOREX / XC9104D095DR-G</td>
+<td align="left">6.0</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">3-ch high voltage driver</td>
+<td align="left">Resister</td>
+<td align="left">R4</td>
+<td align="left">ROHM / KTR03EZPF1004</td>
+<td align="left">1.8</td>
+<td align="left">1 MΩ</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Resistor</td>
+<td align="left">R5</td>
+<td align="left">Panasonic / ERJ-1GNJ1R0C</td>
+<td align="left">0.15</td>
+<td align="left">1 Ω</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Bipolar transistor</td>
+<td align="left">T2</td>
+<td align="left">NXP / PMSTA92</td>
+<td align="left">5.5</td>
+<td align="left">Max. 300 V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">nMOSFET</td>
+<td align="left">T3</td>
+<td align="left">Vishay / SiB452DK</td>
+<td align="left">6.0</td>
+<td align="left">Max. 190 V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">nMOSFET</td>
+<td align="left">T4</td>
+<td align="left">Vishay / SiB452DK</td>
+<td align="left">6.0</td>
+<td align="left">Max. 190 V</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">NOR</td>
+<td align="left">LC1</td>
+<td align="left">Texas Instruments / SN74AUP2G02YFPR</td>
+<td align="left">1.4</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Flip-flop</td>
+<td align="left">LC2</td>
+<td align="left">Texas Instruments / SN74AUP1G74YFPR</td>
+<td align="left">1.4</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left">Microprocessor</td>
+<td align="left">Capacitor</td>
+<td align="left">C6a-b</td>
+<td align="left">Murata / GRJ155R60J106ME11D</td>
+<td align="left">3.0</td>
+<td align="left">10 μF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C7a-c</td>
+<td align="left">Murata / GRM033R60J104KE19</td>
+<td align="left">0.33</td>
+<td align="left">100 nF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C8a-b</td>
+<td align="left">Murata / GRM0335C1E9R0CA01D</td>
+<td align="left">0.33</td>
+<td align="left">9 pF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C9a-b</td>
+<td align="left">Murata / GRM0335C1E8R0BA01D</td>
+<td align="left">0.33</td>
+<td align="left">8 pF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Capacitor</td>
+<td align="left">C10</td>
+<td align="left">Murata / GRM032R60J105ME05D</td>
+<td align="left">0.20</td>
+<td align="left">1 μF</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Resister</td>
+<td align="left">R6</td>
+<td align="left">KOA / RK73B1HTTC104J</td>
+<td align="left">0.15</td>
+<td align="left">100 kΩ</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Ferrite beads</td>
+<td align="left">L2</td>
+<td align="left">Murata / BLM03HD152FN1D</td>
+<td align="left">0.30</td>
+<td align="left">1.5 kΩ</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Inductor</td>
+<td align="left">L3</td>
+<td align="left">Murata / LQM18FN100M00D</td>
+<td align="left">5.0</td>
+<td align="left">10 µH</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Quartz oscillator</td>
+<td align="left">Y1</td>
+<td align="left">ECS / ECS-240-8-47-JTN-TR</td>
+<td align="left">2.5</td>
+<td align="left">24 MHz</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Quartz oscillator</td>
+<td align="left">Y2</td>
+<td align="left">ECS / ECS-.327-9-16-TR</td>
+<td align="left">2.5</td>
+<td align="left">32.768 kHz</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left">Microprocessor</td>
+<td align="left">IC3</td>
+<td align="left">Texas Instruments / CC2640R2FYFVR</td>
+<td align="left">8.7</td>
+<td align="left">–</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
     </div>
 
     
@@ -207,6 +581,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/" rel="tag"># 毕业设计</a>
+          </div>
 
         
 
@@ -276,6 +653,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%85%83%E4%BB%B6%E6%B8%85%E5%8D%95"><span class="nav-number">1.</span> <span class="nav-text">1 元件清单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1"><span class="nav-number">1.1.</span> <span class="nav-text">1.1</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -296,7 +674,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
