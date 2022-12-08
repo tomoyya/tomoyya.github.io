@@ -28,7 +28,7 @@
 <meta property="og:description" content="暑期课程项目 海上无人艇集群仿真平台的搭建 接手omnet++仿真进程和qt可视化软件的交互实现 意图为omnet++编写另外的专属的可视化编辑器软件  0 项目设计需求(1) 主要功能 模拟器可以任意指定通信节点之间的连通关系，在数据传输过程中某些自组网设备可以按照需求断开连接、加入组网或改变网络拓扑，模拟分组无线自组网的自适应路由的能力  模拟器可以任意指定通信节点之间的通信总带宽，两节点之">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-07T11:38:10.000Z">
-<meta property="article:modified_time" content="2022-12-08T07:21:09.980Z">
+<meta property="article:modified_time" content="2022-12-08T08:00:11.705Z">
 <meta property="article:author" content="tomoyya">
 <meta property="article:tag" content="科研项目">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-08 15:21:09" itemprop="dateModified" datetime="2022-12-08T15:21:09+08:00">2022-12-08</time>
+                <time title="修改时间：2022-12-08 16:00:11" itemprop="dateModified" datetime="2022-12-08T16:00:11+08:00">2022-12-08</time>
               </span>
 
           
@@ -247,19 +247,30 @@
 <p>20km 船速10m/s 边界时间： 20km/10m=2000s= 33.3min</p>
 <p>“无人快艇“天行一号”2017年9月问世，<em>最高航速超过50节(每小时92.6公里)</em>=25.72m/s</p>
 <p>理想极限数据率和带宽的一个关系（香农定理）:<br>C =W log2（1+s/n）<br>这个公式叫做香农定理，其中W为信道带宽，S为信号的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87?fromModule=lemma_inlink">平均功率</a>，N为噪声的平均功率，s/n叫做<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E5%99%AA%E6%AF%94?fromModule=lemma_inlink">信噪比</a>。由于在实际使用中S与N的比值太大，故常取其分贝数(db)。分贝与信噪比的关系为 : db=10lg(s/n)<br>例如当s/n为1000，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E5%99%AA%E6%AF%94?fromModule=lemma_inlink">信噪比</a>为30db。这个公式与信号取的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A6%BB%E6%95%A3%E5%80%BC?fromModule=lemma_inlink">离散值</a>无关，也就是说无论用什么方式调制，只要给定了信噪比，则单位时间内最大的信息传输量就确定了。例如信道带宽为3000HZ，信噪比为30db，则最大数据速率为<br>C=3000log2（1+1000）≈3000×9.97≈30000b/s<br>这是极限值，只有理论上的意义。实际上在3000HZ带宽的电话线上数据速率能达到9600b/s就很不错了。</p>
+<p>自由空间损耗公式：空间损耗=20lg（F）+20lg（D）+32.4；<br>F为频率，单位：MHz；D为距离，单位：Km；所以在距离一定的情况下：频率越高，损耗越大。<br>自由空间损耗为了简化链路计算而定义的一个参数；</p>
+<p>??????自由空间传播模型（Free space propagation Model）用于预测<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8E%A5%E6%94%B6%E6%9C%BA/6149241?fromModule=lemma_inlink">接收机</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8F%91%E5%B0%84%E6%9C%BA/7085058?fromModule=lemma_inlink">发射机</a>之间是完全无阻挡的视距路径时接收信号的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9C%BA%E5%BC%BA/8367407?fromModule=lemma_inlink">场强</a>，属于大尺度<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B7%AF%E5%BE%84%E6%8D%9F%E8%80%97/3064937?fromModule=lemma_inlink">路径损耗</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%97%A0%E7%BA%BF%E7%94%B5%E6%B3%A2%E4%BC%A0%E6%92%AD/5850606?fromModule=lemma_inlink">无线电波传播</a>的模型。自由空间模型预测接收功率的衰减为发射机与接收机之间（T-R）距离的函数。</p>
 <h3 id="2-1-1-动态拓扑展示和编辑"><a href="#2-1-1-动态拓扑展示和编辑" class="headerlink" title="2.1.1 动态拓扑展示和编辑"></a>2.1.1 动态拓扑展示和编辑</h3><h4 id="1-展示"><a href="#1-展示" class="headerlink" title="1 展示"></a>1 展示</h4><h5 id="（一）-初始模型拓扑的展示（拓扑模块的展示）"><a href="#（一）-初始模型拓扑的展示（拓扑模块的展示）" class="headerlink" title="（一） 初始模型拓扑的展示（拓扑模块的展示）"></a>（一） 初始模型拓扑的展示（拓扑模块的展示）</h5><p>①用三角形的label代表无人艇及其朝向，计划可以通过spinbox或者其他组件更改label的数量，而实际显示出来的label数量取决于omnet++仿真模型中的无人艇数量，当然我们可以通过添加/减少模型中节点数量 更改label的显示个数 通过在可视化软件中显示与否代替无人艇数目的增减</p>
 <p>②或网上  visio的仿造qt项目   </p>
 <p>③graview的图元项作为线/无人船项的思路  这个比较灵活 可以点击 拖拽 连线</p>
 <h5 id="（二）仿真过程中参数展示"><a href="#（二）仿真过程中参数展示" class="headerlink" title="（二）仿真过程中参数展示"></a>（二）仿真过程中参数展示</h5><h6 id="①节点模块相关参数"><a href="#①节点模块相关参数" class="headerlink" title="①节点模块相关参数"></a>①节点模块相关参数</h6><p>初始的：</p>
-<p>从omnet获取<br>所有节点的唯一序号ID  方向(姿态)  速度  坐标 接收信噪比阈值 发送数据的数据率(发送时延) 排队时延<br>邻居序号ID 和每一个邻居的通信总带宽<br>所有节点共同维护的拓扑连通图</p>
-<p>发送到omnet<br>发生位置拖拽/添加/删除的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的邻居节点ID<br>更新的节点连通拓扑图<br>新更改的发送数据率(发送时延)及涉及的节点ID<br>新更改的排队时延及涉及的节点ID<br>发生更改的通信总带宽以及涉及的两个节点ID<br></p>
+<p>从omnet获取：<br>所有节点的唯一序号ID  方向(姿态)  速度  坐标 接收信噪比阈值 发送数据的数据率(发送时延) 排队时延<br><!--邻居序号ID 和每一个邻居的通信总带宽--><br>所有节点共同维护的拓扑连通图</p>
+<p>发送到omnet：<br>发生位置拖拽/添加/删除的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的邻居节点ID<br>更新的节点连通拓扑图<br>新更改的发送数据率(发送时延)及涉及的节点ID<br>新更改的排队时延及涉及的节点ID<br><!--发生更改的通信总带宽以及涉及的两个节点ID--><br></p>
 <p>仿真过程中的：</p>
-<p>从omnet获取<br>发生位置更新的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的最新邻居节点ID<br>定期计算得的每一个节点的误码率/丢包率？</p>
-<p>发送到omnet<br></p>
+<p>从omnet获取：<br>发生位置更新的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的最新邻居节点ID<br>定期计算得的每一个节点(作为接收终端还是发送起始端根据自己丢失/发送来算)的丢包率</p>
+<!--发送到omnet--><br>
+
+
+
 <h6 id="②信道模块相关参数"><a href="#②信道模块相关参数" class="headerlink" title="②信道模块相关参数"></a>②信道模块相关参数</h6><p>初始的：</p>
-<p>从omnet获取<br>每条信道的丢包率及其涉及的两个节点ID<br>每条信道的传播速率、背景噪声</p>
-<p>发送到omnet<br>更新的信道的丢包率及其涉及的两个节点ID<br>更新的信道的传播速率、背景噪声？？？</p>
-<h6 id="③管理模块相关参数"><a href="#③管理模块相关参数" class="headerlink" title="③管理模块相关参数"></a>③管理模块相关参数</h6><h6 id="④其他可视化展示"><a href="#④其他可视化展示" class="headerlink" title="④其他可视化展示"></a>④其他可视化展示</h6><h4 id="2-编辑"><a href="#2-编辑" class="headerlink" title="2 编辑"></a>2 编辑</h4><h5 id="（一）-模型结构编辑-ned文件编辑"><a href="#（一）-模型结构编辑-ned文件编辑" class="headerlink" title="（一） 模型结构编辑(ned文件编辑)"></a>（一） 模型结构编辑(ned文件编辑)</h5><h5 id="（二）-模型参数编辑-其他文件编辑"><a href="#（二）-模型参数编辑-其他文件编辑" class="headerlink" title="（二） 模型参数编辑(其他文件编辑)"></a>（二） 模型参数编辑(其他文件编辑)</h5><h3 id="2-1-2-性能曲线获取和绘制"><a href="#2-1-2-性能曲线获取和绘制" class="headerlink" title="2.1.2 性能曲线获取和绘制"></a>2.1.2 性能曲线获取和绘制</h3><h3 id="2-1-3-功能组件设计"><a href="#2-1-3-功能组件设计" class="headerlink" title="2.1.3 功能组件设计"></a>2.1.3 功能组件设计</h3><p>按钮:</p>
+<p>从omnet获取：<br>每条信道的误码率及其涉及的两个节点ID<br>每条信道的传播速率、背景噪声、信道距离、信号功率损耗、带宽利用率(占用带宽与总带宽之比)<br></p>
+<p>发送到omnet：<br>更新的信道的丢包率及其涉及的两个节点ID<br>更新的信道的通信总带宽、传播速率、背景噪声、通信质量怎么指定？？？</p>
+<p>仿真中：</p>
+<p>从omnet获取：<br>发生参数变化的信道 例如通信中变化的参数有 信道距离、信号功率损耗、带宽利用率、通信质量（拥挤冲突？）</p>
+<!--发送到omnet--><br>
+
+<h6 id="③管理模块相关参数"><a href="#③管理模块相关参数" class="headerlink" title="③管理模块相关参数"></a>③管理模块相关参数</h6><p>初始的：</p>
+<p>从omnet获取：<br></p>
+<h6 id="④其他可视化展示"><a href="#④其他可视化展示" class="headerlink" title="④其他可视化展示"></a>④其他可视化展示</h6><h4 id="2-编辑"><a href="#2-编辑" class="headerlink" title="2 编辑"></a>2 编辑</h4><h5 id="（一）-模型结构编辑-ned文件编辑"><a href="#（一）-模型结构编辑-ned文件编辑" class="headerlink" title="（一） 模型结构编辑(ned文件编辑)"></a>（一） 模型结构编辑(ned文件编辑)</h5><h5 id="（二）-模型参数编辑-其他文件编辑"><a href="#（二）-模型参数编辑-其他文件编辑" class="headerlink" title="（二） 模型参数编辑(其他文件编辑)"></a>（二） 模型参数编辑(其他文件编辑)</h5><h3 id="2-1-2-性能曲线获取和绘制"><a href="#2-1-2-性能曲线获取和绘制" class="headerlink" title="2.1.2 性能曲线获取和绘制"></a>2.1.2 性能曲线获取和绘制</h3><h3 id="2-1-3-功能组件设计"><a href="#2-1-3-功能组件设计" class="headerlink" title="2.1.3 功能组件设计"></a>2.1.3 功能组件设计</h3><p>按钮:</p>
 <p>objectName-“按钮名称”：按钮的具体功能</p>
 <p>pb_loadmodal-“加载模型”：点击加载omnet++的网络模型结构以及各个节点、信道参数到可视化和软件中</p>
 <p>pb_startsimu-“开始仿真”：点击启动omnet++对当前模型进行仿真并且回传仿真进程 显示到可视化软件上</p>
