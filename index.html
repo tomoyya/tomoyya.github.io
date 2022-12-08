@@ -240,10 +240,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-07 19:38:10 / 修改时间：21:50:41" itemprop="dateCreated datePublished" datetime="2022-12-07T19:38:10+08:00">2022-12-07</time>
+              <time title="创建时间：2022-12-07 19:38:10" itemprop="dateCreated datePublished" datetime="2022-12-07T19:38:10+08:00">2022-12-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-08 15:21:09" itemprop="dateModified" datetime="2022-12-08T15:21:09+08:00">2022-12-08</time>
+              </span>
 
           
 
@@ -277,14 +283,14 @@
 </li>
 </ol>
 <h2 id="2-主要技术指标"><a href="#2-主要技术指标" class="headerlink" title="(2)主要技术指标"></a>(2)主要技术指标</h2><ol>
-<li>支持自组网网络拓扑不少于三类（包括但不限于网状组网、星状组网、链状组网），可模拟无人艇的数量不少于200</li>
-<li>支持水面无线通信信道仿真模拟，模型支持20Km以内的无线传播，能够自动计算信道误码率、传输速率和时延，可以设定不同信道的信道质量</li>
+<li>支持<strong>自组网网络拓扑</strong>不少于三类（包括但不限于网状组网、星状组网、链状组网），可模拟无人艇的数量不少于200</li>
+<li>支持<strong>水面无线通信信道</strong>仿真模拟，模型支持20Km以内的无线传播，能够自动计算<strong>信道误码率</strong>、<strong>传输速率</strong>和<strong>时延</strong>，可以设定不同信道的<strong>信道质量</strong></li>
 <li>支持自组网多跳次数不少于5次</li>
-<li>可以查看模拟的自组网设备参数包括接收信噪比、资源占用情况、丢包率等</li>
+<li>可以查看模拟的自组网设备参数包括<strong>接收信噪比</strong>、<strong>资源占用情况</strong>、<strong>丢包率</strong>等</li>
 <li>场景主要包括海面、湖面等，支持对视距以及部分遮挡情况下的模拟</li>
 <li>具备良好的可扩展性，便于后续功能补充</li>
 </ol>
-<h1 id="3-omnet-仿真模型的详细设计方案和实现"><a href="#3-omnet-仿真模型的详细设计方案和实现" class="headerlink" title="3 omnet++仿真模型的详细设计方案和实现"></a>3 omnet++仿真模型的详细设计方案和实现</h1><h2 id="3-1-节点模块"><a href="#3-1-节点模块" class="headerlink" title="3.1 节点模块"></a>3.1 节点模块</h2><p>包括应用层、路由、网口</p>
+<h1 id="3-omnet-仿真模型的详细设计方案和实现"><a href="#3-omnet-仿真模型的详细设计方案和实现" class="headerlink" title="3 omnet++仿真模型的详细设计方案和实现"></a>3 omnet++仿真模型的详细设计方案和实现</h1><h2 id="3-1-节点模块"><a href="#3-1-节点模块" class="headerlink" title="3.1 节点模块"></a>3.1 节点模块</h2><p>包括应用层、路由、网口、运动模块、子管理模块</p>
 <p>应用层负责数据包的产生和最终接收分析</p>
 <p>路由层负责记录自己的邻居 、根据顶部网络的路由表选择(DFS/BFS)最短路径(最小时延/最少跳数)下一跳的地址</p>
 <p>网口层负责传输层、物理层相关的？</p>
@@ -292,9 +298,23 @@
 <h2 id="3-2-管理模块"><a href="#3-2-管理模块" class="headerlink" title="3.2 管理模块"></a>3.2 管理模块</h2><p>负责统计网络中的一些通信数据 比如</p>
 <h2 id="3-3-信道模块"><a href="#3-3-信道模块" class="headerlink" title="3.3 信道模块"></a>3.3 信道模块</h2><p>负责提供一些计算传播时延、信噪比、判断是否达到连通条件的函数</p>
 <h2 id="3-4-拓扑模块"><a href="#3-4-拓扑模块" class="headerlink" title="3.4 拓扑模块"></a>3.4 拓扑模块</h2><p>所有节点共同维护的一个上层的网络拓扑表 例如 &lt;图&gt;200x200 表示整个网络节点之间的连通情况</p>
-<h1 id="2-qt可视化软件的详细设计方案和需求"><a href="#2-qt可视化软件的详细设计方案和需求" class="headerlink" title="2 qt可视化软件的详细设计方案和需求"></a>2 qt可视化软件的详细设计方案和需求</h1><h2 id="2-1-设计方案"><a href="#2-1-设计方案" class="headerlink" title="2.1 设计方案"></a>2.1 设计方案</h2><h3 id="2-1-1-动态拓扑展示和编辑"><a href="#2-1-1-动态拓扑展示和编辑" class="headerlink" title="2.1.1 动态拓扑展示和编辑"></a>2.1.1 动态拓扑展示和编辑</h3><h4 id="1-初始模型拓扑的展示"><a href="#1-初始模型拓扑的展示" class="headerlink" title="1 初始模型拓扑的展示"></a>1 初始模型拓扑的展示</h4><p>用三角形的label代表无人艇及其朝向，计划可以通过spinbox或者其他组件更改label的数量，而实际显示出来的label数量取决于omnet++仿真模型中的无人艇数量，当然我们可以通过添加/减少模型中节点数量 更改label的显示个数 通过在可视化软件中显示与否代替无人艇数目的增减</p>
-<p>或网上  visio的仿造qt项目   graview的图元项作为线/无人船项的思路</p>
-<h3 id="2-1-2-性能曲线获取和绘制"><a href="#2-1-2-性能曲线获取和绘制" class="headerlink" title="2.1.2 性能曲线获取和绘制"></a>2.1.2 性能曲线获取和绘制</h3><h3 id="2-1-3-功能组件设计"><a href="#2-1-3-功能组件设计" class="headerlink" title="2.1.3 功能组件设计"></a>2.1.3 功能组件设计</h3><p>按钮:</p>
+<h1 id="2-qt可视化软件的详细设计方案和需求"><a href="#2-qt可视化软件的详细设计方案和需求" class="headerlink" title="2 qt可视化软件的详细设计方案和需求"></a>2 qt可视化软件的详细设计方案和需求</h1><h2 id="2-1-设计方案"><a href="#2-1-设计方案" class="headerlink" title="2.1 设计方案"></a>2.1 设计方案</h2><p>20km 光速20万公里/秒 传播时延最大： 20km/20万km=0.1ms</p>
+<p>20km 船速10m/s 边界时间： 20km/10m=2000s= 33.3min</p>
+<p>“无人快艇“天行一号”2017年9月问世，<em>最高航速超过50节(每小时92.6公里)</em>=25.72m/s</p>
+<p>理想极限数据率和带宽的一个关系（香农定理）:<br>C =W log2（1+s/n）<br>这个公式叫做香农定理，其中W为信道带宽，S为信号的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87?fromModule=lemma_inlink">平均功率</a>，N为噪声的平均功率，s/n叫做<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E5%99%AA%E6%AF%94?fromModule=lemma_inlink">信噪比</a>。由于在实际使用中S与N的比值太大，故常取其分贝数(db)。分贝与信噪比的关系为 : db=10lg(s/n)<br>例如当s/n为1000，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E5%99%AA%E6%AF%94?fromModule=lemma_inlink">信噪比</a>为30db。这个公式与信号取的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A6%BB%E6%95%A3%E5%80%BC?fromModule=lemma_inlink">离散值</a>无关，也就是说无论用什么方式调制，只要给定了信噪比，则单位时间内最大的信息传输量就确定了。例如信道带宽为3000HZ，信噪比为30db，则最大数据速率为<br>C=3000log2（1+1000）≈3000×9.97≈30000b/s<br>这是极限值，只有理论上的意义。实际上在3000HZ带宽的电话线上数据速率能达到9600b/s就很不错了。</p>
+<h3 id="2-1-1-动态拓扑展示和编辑"><a href="#2-1-1-动态拓扑展示和编辑" class="headerlink" title="2.1.1 动态拓扑展示和编辑"></a>2.1.1 动态拓扑展示和编辑</h3><h4 id="1-展示"><a href="#1-展示" class="headerlink" title="1 展示"></a>1 展示</h4><h5 id="（一）-初始模型拓扑的展示（拓扑模块的展示）"><a href="#（一）-初始模型拓扑的展示（拓扑模块的展示）" class="headerlink" title="（一） 初始模型拓扑的展示（拓扑模块的展示）"></a>（一） 初始模型拓扑的展示（拓扑模块的展示）</h5><p>①用三角形的label代表无人艇及其朝向，计划可以通过spinbox或者其他组件更改label的数量，而实际显示出来的label数量取决于omnet++仿真模型中的无人艇数量，当然我们可以通过添加/减少模型中节点数量 更改label的显示个数 通过在可视化软件中显示与否代替无人艇数目的增减</p>
+<p>②或网上  visio的仿造qt项目   </p>
+<p>③graview的图元项作为线/无人船项的思路  这个比较灵活 可以点击 拖拽 连线</p>
+<h5 id="（二）仿真过程中参数展示"><a href="#（二）仿真过程中参数展示" class="headerlink" title="（二）仿真过程中参数展示"></a>（二）仿真过程中参数展示</h5><h6 id="①节点模块相关参数"><a href="#①节点模块相关参数" class="headerlink" title="①节点模块相关参数"></a>①节点模块相关参数</h6><p>初始的：</p>
+<p>从omnet获取<br>所有节点的唯一序号ID  方向(姿态)  速度  坐标 接收信噪比阈值 发送数据的数据率(发送时延) 排队时延<br>邻居序号ID 和每一个邻居的通信总带宽<br>所有节点共同维护的拓扑连通图</p>
+<p>发送到omnet<br>发生位置拖拽/添加/删除的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的邻居节点ID<br>更新的节点连通拓扑图<br>新更改的发送数据率(发送时延)及涉及的节点ID<br>新更改的排队时延及涉及的节点ID<br>发生更改的通信总带宽以及涉及的两个节点ID<br></p>
+<p>仿真过程中的：</p>
+<p>从omnet获取<br>发生位置更新的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的最新邻居节点ID<br>定期计算得的每一个节点的误码率/丢包率？</p>
+<p>发送到omnet<br></p>
+<h6 id="②信道模块相关参数"><a href="#②信道模块相关参数" class="headerlink" title="②信道模块相关参数"></a>②信道模块相关参数</h6><p>初始的：</p>
+<p>从omnet获取<br>每条信道的丢包率及其涉及的两个节点ID<br>每条信道的传播速率、背景噪声</p>
+<p>发送到omnet<br>更新的信道的丢包率及其涉及的两个节点ID<br>更新的信道的传播速率、背景噪声？？？</p>
+<h6 id="③管理模块相关参数"><a href="#③管理模块相关参数" class="headerlink" title="③管理模块相关参数"></a>③管理模块相关参数</h6><h6 id="④其他可视化展示"><a href="#④其他可视化展示" class="headerlink" title="④其他可视化展示"></a>④其他可视化展示</h6><h4 id="2-编辑"><a href="#2-编辑" class="headerlink" title="2 编辑"></a>2 编辑</h4><h5 id="（一）-模型结构编辑-ned文件编辑"><a href="#（一）-模型结构编辑-ned文件编辑" class="headerlink" title="（一） 模型结构编辑(ned文件编辑)"></a>（一） 模型结构编辑(ned文件编辑)</h5><h5 id="（二）-模型参数编辑-其他文件编辑"><a href="#（二）-模型参数编辑-其他文件编辑" class="headerlink" title="（二） 模型参数编辑(其他文件编辑)"></a>（二） 模型参数编辑(其他文件编辑)</h5><h3 id="2-1-2-性能曲线获取和绘制"><a href="#2-1-2-性能曲线获取和绘制" class="headerlink" title="2.1.2 性能曲线获取和绘制"></a>2.1.2 性能曲线获取和绘制</h3><h3 id="2-1-3-功能组件设计"><a href="#2-1-3-功能组件设计" class="headerlink" title="2.1.3 功能组件设计"></a>2.1.3 功能组件设计</h3><p>按钮:</p>
 <p>objectName-“按钮名称”：按钮的具体功能</p>
 <p>pb_loadmodal-“加载模型”：点击加载omnet++的网络模型结构以及各个节点、信道参数到可视化和软件中</p>
 <p>pb_startsimu-“开始仿真”：点击启动omnet++对当前模型进行仿真并且回传仿真进程 显示到可视化软件上</p>
