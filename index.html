@@ -159,6 +159,149 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tomoyya.github.io/2022/12/12/omnet++/omnet++%E6%89%8B%E5%86%8C%E6%91%98%E5%BD%95-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="tomoyya">
+      <meta itemprop="description" content="我有很多秘密，如果你愿意听的话">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tomoyya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/12/omnet++/omnet++%E6%89%8B%E5%86%8C%E6%91%98%E5%BD%95-1/" class="post-title-link" itemprop="url">post</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-12 23:03:35" itemprop="dateCreated datePublished" datetime="2022-12-12T23:03:35+08:00">2022-12-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tomoyya.github.io/2022/12/12/omnet++/omnet%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="tomoyya">
+      <meta itemprop="description" content="我有很多秘密，如果你愿意听的话">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tomoyya">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/12/omnet++/omnet%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">post</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-12 15:52:56 / 修改时间：15:54:41" itemprop="dateCreated datePublished" datetime="2022-12-12T15:52:56+08:00">2022-12-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>暑期课程项目 海上无人艇集群仿真平台的搭建 接手omnet++仿真进程和qt可视化软件的交互实现</p>
+<p>意图为omnet++编写另外的专属的可视化编辑器软件</p>
+</blockquote>
+<h1 id="0-项目设计需求"><a href="#0-项目设计需求" class="headerlink" title="0 项目设计需求"></a>0 项目设计需求</h1><h2 id="1-主要功能"><a href="#1-主要功能" class="headerlink" title="(1) 主要功能"></a>(1) 主要功能</h2><ol>
+<li><p>模拟器可以任意指定通信节点之间的<strong>连通关系</strong>，在数据传输过程中某些自组网设备可以按照需求断开连接、加入组网或改变网络拓扑，模拟分组无线自组网的自适应路由的能力</p>
+</li>
+<li><p>模拟器可以任意指定通信<strong>节点之间的通信总带宽</strong>，两节点之间的通信数据量不得高于指定的通信总带宽</p>
+</li>
+<li><p>模拟器可以在各通信节点<strong>传输路径上加不同丢包率</strong>，以便模拟无线信道传输情况，可以任意<strong>指定通信节点之间的网络时延</strong>，能够模拟节点之间的通信抖动</p>
+</li>
+<li><p>模拟器能够模拟自组网通信<strong>多跳情况下的带宽、时延、丢包率</strong>等参数的模拟</p>
+</li>
+<li><p>模拟器支持海面无线通信信道仿真，通过两节点之间的通信距离自动生成<strong>通信信噪比</strong>参数，通过对信噪比参数确定两点之间的<strong>连通情况、通信带宽、时延</strong>等参数</p>
+</li>
+<li><p>支持对<strong>节点相对位置、网络拓扑、节点间通信质量、实时带宽占用情况</strong>等内容的显示</p>
+</li>
+<li><p>支持对<strong>无人艇位置、速度和姿态</strong>等导航信息的模拟</p>
+</li>
+</ol>
+<h2 id="2-主要技术指标"><a href="#2-主要技术指标" class="headerlink" title="(2)主要技术指标"></a>(2)主要技术指标</h2><ol>
+<li>支持<strong>自组网网络拓扑</strong>不少于三类（包括但不限于网状组网、星状组网、链状组网），可模拟无人艇的数量不少于200</li>
+<li>支持<strong>水面无线通信信道</strong>仿真模拟，模型支持20Km以内的无线传播，能够自动计算<strong>信道误码率</strong>、<strong>传输速率</strong>和<strong>时延</strong>，可以设定不同信道的<strong>信道质量</strong></li>
+<li>支持自组网多跳次数不少于5次</li>
+<li>可以查看模拟的自组网设备参数包括<strong>接收信噪比</strong>、<strong>资源占用情况</strong>、<strong>丢包率</strong>等</li>
+<li>场景主要包括海面、湖面等，支持对视距以及部分遮挡情况下的模拟</li>
+<li>具备良好的可扩展性，便于后续功能补充</li>
+</ol>
+<h1 id="1-omnet-仿真模型的详细设计方案和实现"><a href="#1-omnet-仿真模型的详细设计方案和实现" class="headerlink" title="1 omnet++仿真模型的详细设计方案和实现"></a>1 omnet++仿真模型的详细设计方案和实现</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://tomoyya.github.io/2022/12/07/%E6%88%91/%E5%B0%8F%E6%89%93%E5%B0%8F%E9%97%B9%E7%9A%84%E7%97%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -182,10 +325,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-07 19:43:23 / 修改时间：19:43:50" itemprop="dateCreated datePublished" datetime="2022-12-07T19:43:23+08:00">2022-12-07</time>
+              <time title="创建时间：2022-12-07 19:43:23" itemprop="dateCreated datePublished" datetime="2022-12-07T19:43:23+08:00">2022-12-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-11 11:44:17" itemprop="dateModified" datetime="2022-12-11T11:44:17+08:00">2022-12-11</time>
+              </span>
 
           
 
@@ -198,7 +347,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <blockquote>
+<p>大病没有，没事儿爱发个炎，尤其涂抹作用的药物根据每个人的体质，效果大不相同，所以记录一下遇到的效果很好的那些 </p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/07/%E6%88%91/%E5%B0%8F%E6%89%93%E5%B0%8F%E9%97%B9%E7%9A%84%E7%97%85/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -248,7 +407,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-10 22:06:48" itemprop="dateModified" datetime="2022-12-10T22:06:48+08:00">2022-12-10</time>
+                <time title="修改时间：2022-12-12 23:03:19" itemprop="dateModified" datetime="2022-12-12T23:03:19+08:00">2022-12-12</time>
               </span>
 
           
@@ -290,12 +449,17 @@
 <li>场景主要包括海面、湖面等，支持对视距以及部分遮挡情况下的模拟</li>
 <li>具备良好的可扩展性，便于后续功能补充</li>
 </ol>
-<h1 id="1-omnet-仿真模型的详细设计方案和实现"><a href="#1-omnet-仿真模型的详细设计方案和实现" class="headerlink" title="1 omnet++仿真模型的详细设计方案和实现"></a>1 omnet++仿真模型的详细设计方案和实现</h1><h2 id="1-1-节点模块"><a href="#1-1-节点模块" class="headerlink" title="1.1 节点模块"></a>1.1 节点模块</h2><p>包括应用层、路由、网口、运动模块、子管理模块</p>
+<h1 id="1-omnet-仿真模型的详细设计方案和实现"><a href="#1-omnet-仿真模型的详细设计方案和实现" class="headerlink" title="1 omnet++仿真模型的详细设计方案和实现"></a>1 omnet++仿真模型的详细设计方案和实现</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_54215164/article/details/113538660">omnet仿真运行过程</a></p>
+<p>首先，.msg 文件用 opp_msgc. 程序将 C++ 代码进行转换，然后对所有 C++ 源文件进行编译，并且与仿真内核和用户接口库形成仿真程序（simulation executable），NED文件也可以转换成 C++ 文件并连接。</p>
+<p><strong>仿真程序是一个独立的项目，因此可以在没有 OMNeT++ 的机器或没有模型文件的情况下运行</strong>。程序开始运行时，首先访问配置文件（omnetpp.ini文件），该文件包含仿真程序运行的控制设置，模型参数值等。</p>
+<p>仿真程序的输出被记录到：矢量输出文件（output vector files）、标量输出文件（output scalar files）中。OMNeT++ 提供名为Plove的用户图形界面工具查看并绘制矢量文件的内容，另外，矢量输出文件也可以作为 Matlab 等的数学包，用于统计分析和结果可视化。标量工具 Scalars tool 可以使标量输出文件可视化，可以绘制柱状图、x-y坐标系图表等。</p>
+<h2 id="1-1-节点模块"><a href="#1-1-节点模块" class="headerlink" title="1.1 节点模块"></a>1.1 节点模块</h2><p>包括应用层、路由层(网络层)、网口层、运动模块、子管理模块</p>
 <p>应用层负责数据包的产生和最终接收分析</p>
 <p>路由层负责记录自己的邻居 、根据顶部网络的路由表选择(DFS/BFS)最短路径(最小时延/最少跳数)下一跳的地址</p>
-<p>网口层负责传输层、物理层相关的？</p>
+<p>网口层负责数据链路层、物理层相关的？</p>
+<p>运动模块负责节点的运动相关的</p>
 <p>管理子模块负责记录节点的相关数据比如 位置、姿态、速度、信噪比阈值、与邻接点的信道误码率/通信带宽/丢包率/信噪比/比特率/排队时延</p>
-<h2 id="1-2-管理模块"><a href="#1-2-管理模块" class="headerlink" title="1.2 管理模块"></a>1.2 管理模块</h2><p>负责统计网络中的一些通信数据 比如</p>
+<h3 id="1-1-1-子模块-应用层"><a href="#1-1-1-子模块-应用层" class="headerlink" title="1.1.1 子模块-应用层"></a>1.1.1 子模块-应用层</h3><h2 id="1-2-管理模块"><a href="#1-2-管理模块" class="headerlink" title="1.2 管理模块"></a>1.2 管理模块</h2><p>负责统计网络中的一些通信数据 比如</p>
 <h2 id="1-3-信道模块"><a href="#1-3-信道模块" class="headerlink" title="1.3 信道模块"></a>1.3 信道模块</h2><p>负责提供一些计算传播时延、信噪比、判断是否达到连通条件的函数</p>
 <h2 id="1-4-拓扑模块"><a href="#1-4-拓扑模块" class="headerlink" title="1.4 拓扑模块"></a>1.4 拓扑模块</h2><p>所有节点共同维护的一个上层的网络拓扑表 例如 &lt;图&gt;200x200 表示整个网络节点之间的连通情况</p>
 <h1 id="2-qt可视化软件的详细设计方案和需求"><a href="#2-qt可视化软件的详细设计方案和需求" class="headerlink" title="2 qt可视化软件的详细设计方案和需求"></a>2 qt可视化软件的详细设计方案和需求</h1><h2 id="2-1-设计方案"><a href="#2-1-设计方案" class="headerlink" title="2.1 设计方案"></a>2.1 设计方案</h2><p>20km 光速20万公里/秒 传播时延最大： 20km/20万km=0.1ms</p>
@@ -306,7 +470,11 @@
 <p>??????自由空间传播模型（Free space propagation Model）用于预测<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8E%A5%E6%94%B6%E6%9C%BA/6149241?fromModule=lemma_inlink">接收机</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8F%91%E5%B0%84%E6%9C%BA/7085058?fromModule=lemma_inlink">发射机</a>之间是完全无阻挡的视距路径时接收信号的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9C%BA%E5%BC%BA/8367407?fromModule=lemma_inlink">场强</a>，属于大尺度<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B7%AF%E5%BE%84%E6%8D%9F%E8%80%97/3064937?fromModule=lemma_inlink">路径损耗</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%97%A0%E7%BA%BF%E7%94%B5%E6%B3%A2%E4%BC%A0%E6%92%AD/5850606?fromModule=lemma_inlink">无线电波传播</a>的模型。自由空间模型预测接收功率的衰减为发射机与接收机之间（T-R）距离的函数。</p>
 <h3 id="2-1-1-动态拓扑展示和编辑"><a href="#2-1-1-动态拓扑展示和编辑" class="headerlink" title="2.1.1 动态拓扑展示和编辑"></a>2.1.1 动态拓扑展示和编辑</h3><h4 id="1-展示"><a href="#1-展示" class="headerlink" title="1 展示"></a>1 展示</h4><h5 id="（一）-初始模型拓扑的展示（拓扑模块的展示）"><a href="#（一）-初始模型拓扑的展示（拓扑模块的展示）" class="headerlink" title="（一） 初始模型拓扑的展示（拓扑模块的展示）"></a>（一） 初始模型拓扑的展示（拓扑模块的展示）</h5><p>①用三角形的label代表无人艇及其朝向，计划可以通过spinbox或者其他组件更改label的数量，而实际显示出来的label数量取决于omnet++仿真模型中的无人艇数量，当然我们可以通过添加/减少模型中节点数量 更改label的显示个数 通过在可视化软件中显示与否代替无人艇数目的增减</p>
 <p>②或网上  visio的仿造qt项目   </p>
-<p>③graview的图元项作为线/无人船项的思路  这个比较灵活 可以点击 拖拽 连线</p>
+<p>③GraphicsView的图元项作为线/无人船项的思路  这个比较灵活 可以点击 拖拽 连线</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43793182/article/details/127009481">在Graphics View绘图架构中，主要涉及到下面三个类的使用：</a></p>
+<p><strong>场景类（QGraphicsScene）</strong>：该类提供绘图场景（Scene），场景是不可见的，是一个抽象的管理图形项的容器，可向场景中添加图形项，获取场景中的某个图形项等，主要功能如下：<br>1、提供管理大量图元的快速接口；<br>2、传播事件到场景中的每个图元；<br>3、提供未经变换的渲染功能，主要用于打印；<br>4、管理图元状态，如图元选择和焦点处理；</p>
+<p><strong>视图类（QGraphicsView）</strong>：该类提供绘图的视图（View）组件，用于显示场景中的内容。可以为一个场景设置几个视图，用于对同一个数据集提供不同的观察方式；</p>
+<p><strong>图形项类（QGraphicsItem）</strong>：该类提供了一些基本的图形元件，也可在此基础上自定义图形项，它支持各种事件的响应，如鼠标事件、键盘事件、拖放事件等，以实现图形的交互功能。</p>
 <h5 id="（二）仿真过程中参数展示"><a href="#（二）仿真过程中参数展示" class="headerlink" title="（二）仿真过程中参数展示"></a>（二）仿真过程中参数展示</h5><h6 id="①节点模块相关参数"><a href="#①节点模块相关参数" class="headerlink" title="①节点模块相关参数"></a>①节点模块相关参数</h6><p><strong>初始的：</strong></p>
 <p>从omnet获取：<br>所有节点的唯一序号ID  方向(姿态)  速度  坐标 接收信噪比阈值 发送数据的数据率(发送时延) 排队时延<br><!--邻居序号ID 和每一个邻居的通信总带宽--><br>所有节点共同维护的拓扑连通图</p>
 <p>发送到omnet：<br>发生位置拖拽/添加/删除的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的邻居节点ID<br>更新的节点连通拓扑图<br>新更改的发送数据率(发送时延)及涉及的节点ID<br>新更改的排队时延及涉及的节点ID<br><!--发生更改的通信总带宽以及涉及的两个节点ID--><br></p>
@@ -809,7 +977,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-26 21:27:46" itemprop="dateModified" datetime="2022-11-26T21:27:46+08:00">2022-11-26</time>
+                <time title="修改时间：2022-12-12 15:51:58" itemprop="dateModified" datetime="2022-12-12T15:51:58+08:00">2022-12-12</time>
               </span>
 
           
@@ -829,154 +997,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/11/16/%E7%BD%91%E7%AB%99%E7%BB%B4%E6%8A%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tomoyya.github.io/2022/11/16/graduation-notes%EF%BC%88%E6%97%A0%E7%BA%BF%E5%B0%84%E9%A2%91%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%B0%8F%E5%B0%8F%E9%A3%9E%E8%A1%8C%E5%99%A8%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="tomoyya">
-      <meta itemprop="description" content="我有很多秘密，如果你愿意听的话">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tomoyya">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/16/graduation-notes%EF%BC%88%E6%97%A0%E7%BA%BF%E5%B0%84%E9%A2%91%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%B0%8F%E5%B0%8F%E9%A3%9E%E8%A1%8C%E5%99%A8%EF%BC%89/" class="post-title-link" itemprop="url">无线射频驱动的小小飞行器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-16 20:36:15" itemprop="dateCreated datePublished" datetime="2022-11-16T20:36:15+08:00">2022-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-07 19:34:33" itemprop="dateModified" datetime="2022-12-07T19:34:33+08:00">2022-12-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>最终决定做的东南大学本科毕设题目，基于nature论文<em><strong>A wireless radiofrequency-powered insect-scale flapping-wing aerial vehicle</strong></em>复现无线射频驱动的微小型飞行器</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/16/graduation-notes%EF%BC%88%E6%97%A0%E7%BA%BF%E5%B0%84%E9%A2%91%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%B0%8F%E5%B0%8F%E9%A3%9E%E8%A1%8C%E5%99%A8%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tomoyya.github.io/2022/11/04/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1(%E8%BE%B9%E7%BC%98%E6%8E%A7%E5%88%B6%E5%99%A8)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="tomoyya">
-      <meta itemprop="description" content="我有很多秘密，如果你愿意听的话">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tomoyya">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/04/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1(%E8%BE%B9%E7%BC%98%E6%8E%A7%E5%88%B6%E5%99%A8)/" class="post-title-link" itemprop="url">边缘控制器相关概念</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-04 15:49:03" itemprop="dateCreated datePublished" datetime="2022-11-04T15:49:03+08:00">2022-11-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-06 21:42:32" itemprop="dateModified" datetime="2022-12-06T21:42:32+08:00">2022-12-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>用来做一些毕业设计选题的笔记<br>基于网络化边缘控制器  设计应用场景 做硬件和算法<br>(最初题目笔记 现已更改为其他毕设题目)</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/04/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1(%E8%BE%B9%E7%BC%98%E6%8E%A7%E5%88%B6%E5%99%A8)/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1067,7 +1087,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
