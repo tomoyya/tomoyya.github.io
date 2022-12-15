@@ -190,7 +190,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-14 10:42:51" itemprop="dateModified" datetime="2022-12-14T10:42:51+08:00">2022-12-14</time>
+                <time title="修改时间：2022-12-14 19:23:50" itemprop="dateModified" datetime="2022-12-14T19:23:50+08:00">2022-12-14</time>
               </span>
 
           
@@ -339,7 +339,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-12 23:03:19" itemprop="dateModified" datetime="2022-12-12T23:03:19+08:00">2022-12-12</time>
+                <time title="修改时间：2022-12-15 09:41:14" itemprop="dateModified" datetime="2022-12-15T09:41:14+08:00">2022-12-15</time>
               </span>
 
           
@@ -357,122 +357,14 @@
 <p>暑期课程项目 海上无人艇集群仿真平台的搭建 接手omnet++仿真进程和qt可视化软件的交互实现</p>
 <p>意图为omnet++编写另外的专属的可视化编辑器软件</p>
 </blockquote>
-<h1 id="0-项目设计需求"><a href="#0-项目设计需求" class="headerlink" title="0 项目设计需求"></a>0 项目设计需求</h1><h2 id="1-主要功能"><a href="#1-主要功能" class="headerlink" title="(1) 主要功能"></a>(1) 主要功能</h2><ol>
-<li><p>模拟器可以任意指定通信节点之间的<strong>连通关系</strong>，在数据传输过程中某些自组网设备可以按照需求断开连接、加入组网或改变网络拓扑，模拟分组无线自组网的自适应路由的能力</p>
-</li>
-<li><p>模拟器可以任意指定通信<strong>节点之间的通信总带宽</strong>，两节点之间的通信数据量不得高于指定的通信总带宽</p>
-</li>
-<li><p>模拟器可以在各通信节点<strong>传输路径上加不同丢包率</strong>，以便模拟无线信道传输情况，可以任意<strong>指定通信节点之间的网络时延</strong>，能够模拟节点之间的通信抖动</p>
-</li>
-<li><p>模拟器能够模拟自组网通信<strong>多跳情况下的带宽、时延、丢包率</strong>等参数的模拟</p>
-</li>
-<li><p>模拟器支持海面无线通信信道仿真，通过两节点之间的通信距离自动生成<strong>通信信噪比</strong>参数，通过对信噪比参数确定两点之间的<strong>连通情况、通信带宽、时延</strong>等参数</p>
-</li>
-<li><p>支持对<strong>节点相对位置、网络拓扑、节点间通信质量、实时带宽占用情况</strong>等内容的显示</p>
-</li>
-<li><p>支持对<strong>无人艇位置、速度和姿态</strong>等导航信息的模拟</p>
-</li>
-</ol>
-<h2 id="2-主要技术指标"><a href="#2-主要技术指标" class="headerlink" title="(2)主要技术指标"></a>(2)主要技术指标</h2><ol>
-<li>支持<strong>自组网网络拓扑</strong>不少于三类（包括但不限于网状组网、星状组网、链状组网），可模拟无人艇的数量不少于200</li>
-<li>支持<strong>水面无线通信信道</strong>仿真模拟，模型支持20Km以内的无线传播，能够自动计算<strong>信道误码率</strong>、<strong>传输速率</strong>和<strong>时延</strong>，可以设定不同信道的<strong>信道质量</strong></li>
-<li>支持自组网多跳次数不少于5次</li>
-<li>可以查看模拟的自组网设备参数包括<strong>接收信噪比</strong>、<strong>资源占用情况</strong>、<strong>丢包率</strong>等</li>
-<li>场景主要包括海面、湖面等，支持对视距以及部分遮挡情况下的模拟</li>
-<li>具备良好的可扩展性，便于后续功能补充</li>
-</ol>
-<h1 id="1-omnet-仿真模型的详细设计方案和实现"><a href="#1-omnet-仿真模型的详细设计方案和实现" class="headerlink" title="1 omnet++仿真模型的详细设计方案和实现"></a>1 omnet++仿真模型的详细设计方案和实现</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_54215164/article/details/113538660">omnet仿真运行过程</a></p>
-<p>首先，.msg 文件用 opp_msgc. 程序将 C++ 代码进行转换，然后对所有 C++ 源文件进行编译，并且与仿真内核和用户接口库形成仿真程序（simulation executable），NED文件也可以转换成 C++ 文件并连接。</p>
-<p><strong>仿真程序是一个独立的项目，因此可以在没有 OMNeT++ 的机器或没有模型文件的情况下运行</strong>。程序开始运行时，首先访问配置文件（omnetpp.ini文件），该文件包含仿真程序运行的控制设置，模型参数值等。</p>
-<p>仿真程序的输出被记录到：矢量输出文件（output vector files）、标量输出文件（output scalar files）中。OMNeT++ 提供名为Plove的用户图形界面工具查看并绘制矢量文件的内容，另外，矢量输出文件也可以作为 Matlab 等的数学包，用于统计分析和结果可视化。标量工具 Scalars tool 可以使标量输出文件可视化，可以绘制柱状图、x-y坐标系图表等。</p>
-<h2 id="1-1-节点模块"><a href="#1-1-节点模块" class="headerlink" title="1.1 节点模块"></a>1.1 节点模块</h2><p>包括应用层、路由层(网络层)、网口层、运动模块、子管理模块</p>
-<p>应用层负责数据包的产生和最终接收分析</p>
-<p>路由层负责记录自己的邻居 、根据顶部网络的路由表选择(DFS/BFS)最短路径(最小时延/最少跳数)下一跳的地址</p>
-<p>网口层负责数据链路层、物理层相关的？</p>
-<p>运动模块负责节点的运动相关的</p>
-<p>管理子模块负责记录节点的相关数据比如 位置、姿态、速度、信噪比阈值、与邻接点的信道误码率/通信带宽/丢包率/信噪比/比特率/排队时延</p>
-<h3 id="1-1-1-子模块-应用层"><a href="#1-1-1-子模块-应用层" class="headerlink" title="1.1.1 子模块-应用层"></a>1.1.1 子模块-应用层</h3><h2 id="1-2-管理模块"><a href="#1-2-管理模块" class="headerlink" title="1.2 管理模块"></a>1.2 管理模块</h2><p>负责统计网络中的一些通信数据 比如</p>
-<h2 id="1-3-信道模块"><a href="#1-3-信道模块" class="headerlink" title="1.3 信道模块"></a>1.3 信道模块</h2><p>负责提供一些计算传播时延、信噪比、判断是否达到连通条件的函数</p>
-<h2 id="1-4-拓扑模块"><a href="#1-4-拓扑模块" class="headerlink" title="1.4 拓扑模块"></a>1.4 拓扑模块</h2><p>所有节点共同维护的一个上层的网络拓扑表 例如 &lt;图&gt;200x200 表示整个网络节点之间的连通情况</p>
-<h1 id="2-qt可视化软件的详细设计方案和需求"><a href="#2-qt可视化软件的详细设计方案和需求" class="headerlink" title="2 qt可视化软件的详细设计方案和需求"></a>2 qt可视化软件的详细设计方案和需求</h1><h2 id="2-1-设计方案"><a href="#2-1-设计方案" class="headerlink" title="2.1 设计方案"></a>2.1 设计方案</h2><p>20km 光速20万公里/秒 传播时延最大： 20km/20万km=0.1ms</p>
-<p>20km 船速10m/s 边界时间： 20km/10m=2000s= 33.3min</p>
-<p>“无人快艇“天行一号”2017年9月问世，<em>最高航速超过50节(每小时92.6公里)</em>=25.72m/s</p>
-<p>理想极限数据率和带宽的一个关系（香农定理）:<br>C =W log2（1+s/n）<br>这个公式叫做香农定理，其中W为信道带宽，S为信号的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B9%B3%E5%9D%87%E5%8A%9F%E7%8E%87?fromModule=lemma_inlink">平均功率</a>，N为噪声的平均功率，s/n叫做<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E5%99%AA%E6%AF%94?fromModule=lemma_inlink">信噪比</a>。由于在实际使用中S与N的比值太大，故常取其分贝数(db)。分贝与信噪比的关系为 : db=10lg(s/n)<br>例如当s/n为1000，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BF%A1%E5%99%AA%E6%AF%94?fromModule=lemma_inlink">信噪比</a>为30db。这个公式与信号取的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A6%BB%E6%95%A3%E5%80%BC?fromModule=lemma_inlink">离散值</a>无关，也就是说无论用什么方式调制，只要给定了信噪比，则单位时间内最大的信息传输量就确定了。例如信道带宽为3000HZ，信噪比为30db，则最大数据速率为<br>C=3000log2（1+1000）≈3000×9.97≈30000b/s<br>这是极限值，只有理论上的意义。实际上在3000HZ带宽的电话线上数据速率能达到9600b/s就很不错了。</p>
-<p>自由空间损耗公式：空间损耗=20lg（F）+20lg（D）+32.4；<br>F为频率，单位：MHz；D为距离，单位：Km；所以在距离一定的情况下：频率越高，损耗越大。<br>自由空间损耗为了简化链路计算而定义的一个参数；</p>
-<p>??????自由空间传播模型（Free space propagation Model）用于预测<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8E%A5%E6%94%B6%E6%9C%BA/6149241?fromModule=lemma_inlink">接收机</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8F%91%E5%B0%84%E6%9C%BA/7085058?fromModule=lemma_inlink">发射机</a>之间是完全无阻挡的视距路径时接收信号的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%9C%BA%E5%BC%BA/8367407?fromModule=lemma_inlink">场强</a>，属于大尺度<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B7%AF%E5%BE%84%E6%8D%9F%E8%80%97/3064937?fromModule=lemma_inlink">路径损耗</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%97%A0%E7%BA%BF%E7%94%B5%E6%B3%A2%E4%BC%A0%E6%92%AD/5850606?fromModule=lemma_inlink">无线电波传播</a>的模型。自由空间模型预测接收功率的衰减为发射机与接收机之间（T-R）距离的函数。</p>
-<h3 id="2-1-1-动态拓扑展示和编辑"><a href="#2-1-1-动态拓扑展示和编辑" class="headerlink" title="2.1.1 动态拓扑展示和编辑"></a>2.1.1 动态拓扑展示和编辑</h3><h4 id="1-展示"><a href="#1-展示" class="headerlink" title="1 展示"></a>1 展示</h4><h5 id="（一）-初始模型拓扑的展示（拓扑模块的展示）"><a href="#（一）-初始模型拓扑的展示（拓扑模块的展示）" class="headerlink" title="（一） 初始模型拓扑的展示（拓扑模块的展示）"></a>（一） 初始模型拓扑的展示（拓扑模块的展示）</h5><p>①用三角形的label代表无人艇及其朝向，计划可以通过spinbox或者其他组件更改label的数量，而实际显示出来的label数量取决于omnet++仿真模型中的无人艇数量，当然我们可以通过添加/减少模型中节点数量 更改label的显示个数 通过在可视化软件中显示与否代替无人艇数目的增减</p>
-<p>②或网上  visio的仿造qt项目   </p>
-<p>③GraphicsView的图元项作为线/无人船项的思路  这个比较灵活 可以点击 拖拽 连线</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43793182/article/details/127009481">在Graphics View绘图架构中，主要涉及到下面三个类的使用：</a></p>
-<p><strong>场景类（QGraphicsScene）</strong>：该类提供绘图场景（Scene），场景是不可见的，是一个抽象的管理图形项的容器，可向场景中添加图形项，获取场景中的某个图形项等，主要功能如下：<br>1、提供管理大量图元的快速接口；<br>2、传播事件到场景中的每个图元；<br>3、提供未经变换的渲染功能，主要用于打印；<br>4、管理图元状态，如图元选择和焦点处理；</p>
-<p><strong>视图类（QGraphicsView）</strong>：该类提供绘图的视图（View）组件，用于显示场景中的内容。可以为一个场景设置几个视图，用于对同一个数据集提供不同的观察方式；</p>
-<p><strong>图形项类（QGraphicsItem）</strong>：该类提供了一些基本的图形元件，也可在此基础上自定义图形项，它支持各种事件的响应，如鼠标事件、键盘事件、拖放事件等，以实现图形的交互功能。</p>
-<h5 id="（二）仿真过程中参数展示"><a href="#（二）仿真过程中参数展示" class="headerlink" title="（二）仿真过程中参数展示"></a>（二）仿真过程中参数展示</h5><h6 id="①节点模块相关参数"><a href="#①节点模块相关参数" class="headerlink" title="①节点模块相关参数"></a>①节点模块相关参数</h6><p><strong>初始的：</strong></p>
-<p>从omnet获取：<br>所有节点的唯一序号ID  方向(姿态)  速度  坐标 接收信噪比阈值 发送数据的数据率(发送时延) 排队时延<br><!--邻居序号ID 和每一个邻居的通信总带宽--><br>所有节点共同维护的拓扑连通图</p>
-<p>发送到omnet：<br>发生位置拖拽/添加/删除的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的邻居节点ID<br>更新的节点连通拓扑图<br>新更改的发送数据率(发送时延)及涉及的节点ID<br>新更改的排队时延及涉及的节点ID<br><!--发生更改的通信总带宽以及涉及的两个节点ID--><br></p>
-<p><strong>仿真过程中的：</strong></p>
-<p>从omnet获取：<br>发生位置更新的节点的唯一序号ID 方向(姿态) 速度 坐标 更新的节点的最新邻居节点ID<br>定期计算得的每一个节点(作为接收终端还是发送起始端根据自己丢失/发送来算)的丢包率</p>
-<!--发送到omnet--><br>
-
-
-
-<p> <strong>节点参数的可视化展示</strong></p>
-<p>假设某个组件/图元代表无人艇可点击出发函数响应，另一组件/图元代表无人艇之间的信道连接，也可点击触发函数响应</p>
-<p>单击仿真过程中的无人艇组件<br> 在某一特定区域展示该节点实时信息：ID序号 方向 姿态 速度 坐标 接收信噪比阈值 发送的数据率 排队时延 丢包率  【点击这些实时信息可以查看对应的曲线变化？？】<br>【显示以该组件为圆心的通信可达范围？？？】</p>
-<h6 id="②信道模块相关参数"><a href="#②信道模块相关参数" class="headerlink" title="②信道模块相关参数"></a>②信道模块相关参数</h6><p><strong>初始的：</strong></p>
-<p>从omnet获取：<br>每条信道的误码率及其涉及的两个节点ID<br>每条信道的传播速率、背景噪声、信道距离、信号功率损耗、带宽利用率(占用带宽与总带宽之比)<br></p>
-<p>发送到omnet：<br>更新的信道的误码率及其涉及的两个节点ID<br>更新的信道的通信总带宽、传播速率、背景噪声、通信质量怎么指定？？？</p>
-<p><strong>仿真中：</strong></p>
-<p>从omnet获取：<br>发生参数变化的信道 例如通信中变化的参数有 信道距离、信号功率损耗、带宽利用率、通信质量（拥挤冲突？）</p>
-<!--发送到omnet--><br>
-
-
-
-<p> <strong>信道参数的可视化展示</strong></p>
-<p>假设某个组件/图元代表无人艇可点击出发函数响应，另一组件/图元代表无人艇之间的信道连接，也可点击触发函数响应</p>
-<p>单击仿真过程中的无人艇间信道组件<br> 在某一特定区域展示该信道实时信息：连接的两个节点 误码率 背景噪声 信道距离长度 总带宽 带宽利用率 传播速率  <br></p>
-<h6 id="③管理模块相关参数"><a href="#③管理模块相关参数" class="headerlink" title="③管理模块相关参数"></a>③管理模块相关参数</h6><p>初始的：</p>
-<p>从omnet获取：<br></p>
-<h6 id="④其他可视化展示"><a href="#④其他可视化展示" class="headerlink" title="④其他可视化展示"></a>④其他可视化展示</h6><p>信道通信数据量随时间曲线</p>
-<p>信道带宽利用率随时间曲线</p>
-<h4 id="2-编辑"><a href="#2-编辑" class="headerlink" title="2 编辑"></a>2 编辑</h4><h5 id="（一）-模型结构编辑-ned文件编辑"><a href="#（一）-模型结构编辑-ned文件编辑" class="headerlink" title="（一） 模型结构编辑(ned文件编辑)"></a>（一） 模型结构编辑(ned文件编辑)</h5><h5 id="（二）-模型参数编辑-其他文件编辑"><a href="#（二）-模型参数编辑-其他文件编辑" class="headerlink" title="（二） 模型参数编辑(其他文件编辑)"></a>（二） 模型参数编辑(其他文件编辑)</h5><h3 id="2-1-2-性能曲线获取和绘制"><a href="#2-1-2-性能曲线获取和绘制" class="headerlink" title="2.1.2 性能曲线获取和绘制"></a>2.1.2 性能曲线获取和绘制</h3><h3 id="2-1-3-功能组件设计"><a href="#2-1-3-功能组件设计" class="headerlink" title="2.1.3 功能组件设计"></a>2.1.3 功能组件设计</h3><p>按钮:</p>
-<p>objectName-“按钮名称”：按钮的具体功能</p>
-<p>pb_openpro-“打开项目”：点击打开omnet++并弹出选择omnet++仿真项目的 文件选择对话 之后omnet打开对应的仿真项目</p>
-<p>pb_loadmodal-“加载模型”：点击加载omnet++的网络模型结构以及各个节点、信道参数到可视化软件中</p>
-<p>pb_startsimu-“开始仿真”：点击启动omnet++对当前模型进行仿真并且回传仿真进程 显示到可视化软件上</p>
-<p>pb_stopsimu-“终止仿真”：点击停止当前omnet++仿真进程并且暂停omnet++的数据回传</p>
-<p>pb_editmodal-“编辑模型”：载入模型后开始仿真前可以使用的按钮  点击之后屏蔽其他四个按钮 进入模型编辑状态，对当前载入的模型(omnet++项目)进行可视化编辑，①提供有无人艇组件图标的工具栏 可以移动/删除/添加节点组件改变拓扑 ②点击已经添加的无人艇组件显示进一步的工具栏，工具栏提供为选中节点添加邻居，修改坐标、速度、方向、接收信噪比阈值、发送的数据率、排队时延等功能③点击已存在的信道连接组件，工具栏提供为选中信道 添加/删除 修改误码率 背景噪声 信道距离长度（随着节点移动而自动改变） 总带宽 传播速率等功能④修改一些仿真环境参数 关于海面、湖面、遮挡等的物理环境可视化及通信质量的影响</p>
-<p>pb_confirmedit-“确认编辑”：点击确认编辑结果，退出编辑状态，可以进行仿真进程</p>
-<p>pb_savepro-“保存项目”：点击选择路径另存当前编辑好的omnet仿真项目 下次可以直接加载仿真或在其基础上编辑</p>
-<p>命令按钮：</p>
-<p>objectName-“按钮名称”：按钮的具体功能</p>
-<p>cb_omnet-“选择OMNeT++路径”：点击跳出文件/文件夹选择框，选择OMNeT++的启动路径(eclipsec(OMNet++).exe的路径)</p>
-<p>cb_pro-“选择模型项目路径”：点击跳出文件/文件夹选择框，选择模型的根目录路径</p>
-<h4 id="（一）pb-openpro-“打开项目”"><a href="#（一）pb-openpro-“打开项目”" class="headerlink" title="（一）pb_openpro-“打开项目”"></a>（一）pb_openpro-“打开项目”</h4><h5 id="①第一版功能与设计"><a href="#①第一版功能与设计" class="headerlink" title="①第一版功能与设计"></a>①第一版功能与设计</h5><p>功能：点击打开omnet++并弹出选择omnet++仿真项目的 文件选择对话 之后omnet打开对应的仿真项目</p>
-<p>寻找到的方案：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jolin678/article/details/119300890">四种 ShellExecute WinExec system CreateProcess </a></p>
-<h5 id="方案①ShellExecute"><a href="#方案①ShellExecute" class="headerlink" title="方案①ShellExecute"></a>方案①ShellExecute</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ShellExecute</span>(<span class="literal">NULL</span>,<span class="string">L&quot;open&quot;</span>,<span class="string">L&quot;F:\\Code\\C++\\startexetest\\Win32\\Debug\\startexetest.exe&quot;</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>,SW_SHOW);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HINSTANCE <span class="title">ShellExecute</span><span class="params">( </span></span></span><br><span class="line"><span class="params"><span class="function">	HWND hwnd, </span></span></span><br><span class="line"><span class="params"><span class="function">	LPCTSTR lpOperation,</span></span></span><br><span class="line"><span class="params"><span class="function">	LPCTSTR lpFile, </span></span></span><br><span class="line"><span class="params"><span class="function">	LPCTSTR lpParameters, </span></span></span><br><span class="line"><span class="params"><span class="function">	LPCTSTR lpDirectory, </span></span></span><br><span class="line"><span class="params"><span class="function">	INT nShowCmd</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>hWnd：用于指定父窗口的句柄。当函数调用过程中出现错误时，它将作为Windows消息窗口的父窗口。<br>lpOperation：用于指定要进行的操作, 如: open、runas、print、edit、explore、find。当此参数为NULL时，默认执行open操作。（open:表示执行由lpFile参数指定的程序，或者打开由lpFile参数指定的文件或文件夹。explort:表示打开由lpFile参数指定的文件夹。print:表示打印由lpFile参数指定的文件。）<br>lpParameters：若lpFile参数是一个可执行文件，则此参数指定命令行参数，否则此参数应设为NULL。<br>lpDirectory：用于指定默认目录<br>nShowCmd：用于指定程序窗口初始显示方式。<br>缺点：</p>
-<p>　　它虽然传回一个HINSTANCE，但他并不是真正的句柄，仅能拿它来做一些错误值检查。 </p>
-<p>优点：　　</p>
-<p>​       它的功能比前WinExec()和system()更强大，它可以执行系统的Shell命令。比如可以启动一个默认的文字处理程序来打开txt文档，再比如可以启动一个默认浏览器来打开一个网址。</p>
-<h5 id="②第二版功能与设计"><a href="#②第二版功能与设计" class="headerlink" title="②第二版功能与设计"></a>②第二版功能与设计</h5><p>第二版的时候提前添加了对于OMNeT++启动文件和仿真模型项目根目录文件夹的路径选择按钮，提前确定了两个重要的目录，所以这一按钮的功能有所变化，是打开前述指定的OMNeT++软件，相当于第一版功能的一个简化，拆分出了两部分。</p>
-<p>工具栏：<br>思路-可以通过ToolBar工具栏和ToolButton工具按钮的综合应用实现 像word和excel等办公软件那样将 常用编辑/功能按钮集成到顶部工具栏</p>
-<h1 id="3-OMNet-自定义开发手册"><a href="#3-OMNet-自定义开发手册" class="headerlink" title="3 OMNet++自定义开发手册"></a>3 OMNet++自定义开发手册</h1><p>之前忘记了 OMNet++是完全开源可开发的软件  所以应该有外部修改接口和用户自定义方法的</p>
-<h2 id="3-1-Customizing-and-Extending-OMNeT"><a href="#3-1-Customizing-and-Extending-OMNeT" class="headerlink" title="3.1 Customizing and Extending OMNeT++"></a>3.1 <a target="_blank" rel="noopener" href="https://doc.omnetpp.org/omnetpp/manual/#sec:plugin-exts:overview">Customizing and Extending OMNeT++</a></h2><h2 id="3-2-自定义插件与开发"><a href="#3-2-自定义插件与开发" class="headerlink" title="3.2 自定义插件与开发"></a>3.2 <a target="_blank" rel="noopener" href="https://doc.omnetpp.org/omnetpp/IDE-DevelopersGuide.pdf">自定义插件与开发</a></h2><p>其实就是开发Eclipse plug-ins，我们只要知道怎么将插件加入到omnet中作为该仿真平台的一部分就好了</p>
-<p>剩下的就是去搜索如何开发Eclipse插件的教程？</p>
-<p>omnet++的插件和仿真平台是捆绑的，我们可以很方便地找到插件的源码以及使用手册？</p>
-<h3 id="3-2-1-环境准备"><a href="#3-2-1-环境准备" class="headerlink" title="3.2.1 环境准备"></a>3.2.1 环境准备</h3><p>为OMNet++开发插件需要的环境：• JDT (Java Development Tools) - for generic Java development. JDT contains a Java compiler and all the editors debuggers and tools used during Java development.<br>• PDE (Plug-in Development Environment) - this component contains additional tools,API definitions and documentation for developing plug-ins. PDE requires the presence of JDT.</p>
-<h4 id="（一）一些见到的有用的插件"><a href="#（一）一些见到的有用的插件" class="headerlink" title="（一）一些见到的有用的插件"></a>（一）一些见到的有用的插件</h4><h5 id="①使用NED-and-Message-Types"><a href="#①使用NED-and-Message-Types" class="headerlink" title="①使用NED and Message Types"></a>①使用NED and Message Types</h5><p>org.omnetpp.ned.core</p>
-<p>org.omnetpp.ned.model ：里面的一些class和函数</p>
-<h5 id="②项目工程相关的"><a href="#②项目工程相关的" class="headerlink" title="②项目工程相关的"></a>②项目工程相关的</h5><p>org.omnetpp.common： ProjectUtils class可以统计打开的或者引用到的项目(project)个数或者NED文件夹</p>
-<p>org.omnetpp.cdt： MakefileToools and MetaMakemake可以控制Makefile的生成</p>
-<p>org.omnetpp.common： CDTUtils可以统计C源文件或其他文件夹</p>
-<h5 id="③丰富目前的IDE功能"><a href="#③丰富目前的IDE功能" class="headerlink" title="③丰富目前的IDE功能"></a>③丰富目前的IDE功能</h5><p>org.omnetpp.common：org.omnetpp.common.wizard.contenttemplates 可以添加一个自定义的项目工程模板</p>
-<h5 id="④自定义向导？"><a href="#④自定义向导？" class="headerlink" title="④自定义向导？"></a>④自定义向导？</h5><p>For further info about how to write custom wizards please read the <strong>IDE Customization Guide</strong>.</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/07/omnet++/qt%E4%B8%8Eomnet%E4%BA%A4%E4%BA%92/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
