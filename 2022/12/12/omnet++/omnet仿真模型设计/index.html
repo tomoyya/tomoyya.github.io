@@ -28,7 +28,7 @@
 <meta property="og:description" content="暑期课程项目 海上无人艇集群仿真平台的搭建 接手omnet++仿真进程和qt可视化软件的交互实现 意图为omnet++编写另外的专属的可视化编辑器软件">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-12T07:52:56.000Z">
-<meta property="article:modified_time" content="2022-12-14T11:23:50.053Z">
+<meta property="article:modified_time" content="2023-01-30T08:50:49.270Z">
 <meta property="article:author" content="tomoyya">
 <meta property="article:tag" content="科研项目">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-14 19:23:50" itemprop="dateModified" datetime="2022-12-14T19:23:50+08:00">2022-12-14</time>
+                <time title="修改时间：2023-01-30 16:50:49" itemprop="dateModified" datetime="2023-01-30T16:50:49+08:00">2023-01-30</time>
               </span>
 
           
@@ -258,6 +258,57 @@
 <p>节点之间的传播速率显示</p>
 <p>节点之间的信道质量三色显示</p>
 <p>网络的各个节点的位置  及其拓扑连接图 以及谁与谁之间通信可达的图</p>
+<h2 id="1-4-关于代码中无人艇速度和更新间隔的确定"><a href="#1-4-关于代码中无人艇速度和更新间隔的确定" class="headerlink" title="1.4 关于代码中无人艇速度和更新间隔的确定"></a>1.4 关于代码中无人艇速度和更新间隔的确定</h2><h3 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h3><p>目前omnet和qt中的无人艇活动区域为  wxh = 1000x900</p>
+<p>假设要求无人艇与无人艇间通信可达距离约为200m   地图广度20km</p>
+<p>w:1000代表 <strong>30</strong>xw=30000m=30km</p>
+<p>h:900代表   <strong>30</strong>xh=27000m=27km</p>
+<p>走过单位像素(30m)的时间 t1=30/v(10m/s)    =3s</p>
+<p>则指定速度  10m/s可以通过指定为10/<strong>30</strong>=0.33来代表</p>
+<p>位置更新时间可以定为3s  (节点之间更新间隔3/200 = 15ms  0.015s)</p>
+<p>速度更新时间可以定为15s(节点之间更新间隔15/200 = 0.075s)</p>
+<p>但是在qt中 wxh = 1000x900</p>
+<p>设置500m连接才500/30=50/3=16个像素 很短</p>
+<p>要想实现看起来连接有300个像素怎么办？画布的放大缩小？让scene确实有很大？</p>
+<h2 id="方案2"><a href="#方案2" class="headerlink" title="方案2"></a>方案2</h2><p>目前omnet和qt中的无人艇活动区域为  wxh = 10000x9000</p>
+<p>假设要求无人艇与无人艇间通信可达距离约为500m   地图广度20km</p>
+<p>w:10000代表 <strong>3</strong>xw=30000m=30km</p>
+<p>h:9000代表   <strong>3</strong>xh=27000m=27km</p>
+<p>走过单位像素(3m)的时间 t1=3/v(10m/s)    =0.3s</p>
+<p>则指定速度  10m/s可以通过指定为10/<strong>3</strong>=3.3来代表</p>
+<p>位置更新时间可以定为0.3s  (节点之间更新间隔0.3/200 = 1.5ms  0.0015s)</p>
+<p>速度更新时间可以定为1.5s(节点之间更新间隔1.5/200 = 0.0075s)</p>
+<p>此时在qt中 wxh = 10000x9000</p>
+<p>设置500m连接有500/3≈160个像素 可以接受</p>
+<h2 id="方案3-勉强可以用"><a href="#方案3-勉强可以用" class="headerlink" title="方案3   勉强可以用"></a>方案3   勉强可以用</h2><p>目前omnet和qt中的无人艇活动区域为  wxh = 5000x4500</p>
+<p>假设要求无人艇与无人艇间通信可达距离约为500m   地图广度20km</p>
+<p>w:5000代表 <strong>4</strong>xw=20000m=20km</p>
+<p>h:4500代表   <strong>4</strong>xh=20000m=20km</p>
+<p>走过单位像素(4m)的时间 t1=4/v(10m/s)    =0.4s</p>
+<p>则指定速度  10m/s可以通过指定为10/<strong>4</strong>=2.5来代表</p>
+<p>位置更新时间可以定为0.4s  (节点之间更新间隔0.4/200 = 2ms  0.002s)</p>
+<p>速度更新时间可以定为2s(节点之间更新间隔2/200 = 10ms = 0.010s)</p>
+<p>此时在qt中 wxh = 5000x4500</p>
+<p>设置500m连接有500/<strong>4</strong>≈125个像素 可以接受</p>
+<p>qt-config.h配置：</p>
+<p>#define omnet_rate 4//在omnet中一个像素代表omnet_rate米<br>#define scene_rate 5 //场景大小是视图(graphicview)的几倍<br>#define scene_rate2 1 //场景大小是omnet中网络视图大小(network.ned)的几倍<br>#define pixel_rate 1.0*omnet_rate/scene_rate2  //在qt的scene中一个像素代表多少米  像素距离会变成实际距离的1/pixel_rate</p>
+<p>#define view_width 1000<br>#define view_height 900<br>#define scene_width 5000<br>#define scene_height 4500</p>
+<p>omnet-ini配置：</p>
+<p><em>.node</em>.mobility.typename = “UsvMobility”<br><em>.node</em>.mobility.positionUpdateInterval = 0.4s#0.1s # 位置更新间隔<br><em>.node</em>.mobility.velocityUpdateInterval = 2.0s#1.0s # 速度更新间隔<br><em>.node</em>.mobility.maxSpeed = 100mps             # 无人艇最大速度和加速度<br><em>.node</em>.mobility.maxAccel = 1mps<br><em>.node</em>.mobility.speed = 2.5mps#10mps              # 速率大小</p>
+<h2 id="方案4-有一点密集了"><a href="#方案4-有一点密集了" class="headerlink" title="方案4  有一点密集了"></a>方案4  有一点密集了</h2><p>目前omnet和qt中的无人艇活动区域为  wxh = 2000x1800</p>
+<p>假设要求无人艇与无人艇间通信可达距离约为500m   地图广度4km</p>
+<p>w:2000代表 <strong>2</strong>xw=4000m=4km</p>
+<p>h:1800代表   <strong>2</strong>xh=3600m=3.6km</p>
+<p>走过单位像素(2m)的时间 t1=2/v(10m/s)    =0.2s</p>
+<p>则指定速度  10m/s可以通过指定为10/<strong>2</strong>=5来代表</p>
+<p>位置更新时间可以定为0.2s  (节点之间更新间隔0.2/200 = 1ms  0.001s)</p>
+<p>速度更新时间可以定为1s(节点之间更新间隔1/200 = 0.005s)</p>
+<p>此时在qt中 wxh = 2000x1800</p>
+<p>设置500m连接有500/2≈250个像素 可以接受</p>
+<p>qt-config.h配置：</p>
+<p>#define omnet_rate 2//在omnet中一个像素代表omnet_rate米<br>#define scene_rate 2 //场景大小是视图(graphicview)的几倍<br>#define scene_rate2 1 //场景大小是omnet中网络视图大小(network.ned)的几倍<br>#define pixel_rate 1.0*omnet_rate/scene_rate2  //在qt的scene中一个像素代表多少米  像素距离会变成实际距离的1/pixel_rate</p>
+<p>#define view_width 1000<br>#define view_height 900<br>#define scene_width 2000<br>#define scene_height 1800</p>
+<p>omnet-ini配置：</p>
+<p><em>.node</em>.mobility.typename = “UsvMobility”<br><em>.node</em>.mobility.positionUpdateInterval = 0.2s#0.1s # 位置更新间隔<br><em>.node</em>.mobility.velocityUpdateInterval = 1.0s#1.0s # 速度更新间隔<br><em>.node</em>.mobility.maxSpeed = 100mps             # 无人艇最大速度和加速度<br><em>.node</em>.mobility.maxAccel = 1mps<br><em>.node</em>.mobility.speed = 5mps#10mps              # 速率大小</p>
 
     </div>
 
@@ -338,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E9%9C%80%E6%B1%82"><span class="nav-text">0 项目设计需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-text">(1) 主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87"><span class="nav-text">(2)主要技术指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-omnet-%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-text">1 omnet++仿真模型的详细设计方案和实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%B8%80%E4%BA%9B%E4%BE%8B%E7%A8%8B"><span class="nav-text">1.1 一些例程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-ieee802-11"><span class="nav-text">1.1.1 ieee802.11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="nav-text">1.2 一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84%E5%92%8C%E4%BF%A1%E5%99%AA%E6%AF%94%E9%98%88%E5%80%BC%E5%88%A4%E6%96%AD%E8%BF%9E%E9%80%9A%E4%B8%8E%E5%90%A6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">1.2.1 网络拓扑结构和信噪比阈值判断连通与否的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E4%BF%A1%E9%81%93%E6%A8%A1%E5%9D%97%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99-%E8%AE%B0%E5%BE%97%E6%9C%89%E4%B8%AAcChannel%E7%B1%BB%E5%8F%AF%E4%BB%A5%E6%89%A9%E5%B1%95%E4%B9%9F%E8%AE%B8%E5%8F%AF%E4%BB%A5%E8%80%83%E8%99%91%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E8%BF%99%E4%B8%AA%E6%A8%A1%E5%9D%97"><span class="nav-text">1.2.2 信道模块如何编写(记得有个cChannel类可以扩展也许可以考虑动态创建这个模块)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E8%BF%90%E8%BE%93%E5%B1%82%E7%9A%84%E4%B8%80%E4%BA%9BTCP%E5%8D%8F%E8%AE%AE"><span class="nav-text">1.2.3 是否需要运输层的一些TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%AE%9E%E7%8E%B0%E8%BD%BD%E6%B3%A2%E7%9B%91%E5%90%AC"><span class="nav-text">1.2.4 数据链路层实现载波监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-%E5%85%B3%E4%BA%8E%E8%8A%82%E7%82%B9%E5%BD%93%E5%89%8D%E9%80%9F%E5%BA%A6-%E6%96%B9%E5%90%91-%E4%BD%8D%E7%BD%AE%E5%9D%90%E6%A0%87%E7%9A%84%E5%82%A8%E5%AD%98%E5%92%8C%E4%BB%BF%E7%9C%9F%E4%B8%AD%E6%98%BE%E7%A4%BA"><span class="nav-text">1.2.5 关于节点当前速度 方向 位置坐标的储存和仿真中显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="nav-text">1.3 一些重要参数在哪里</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E9%9C%80%E6%B1%82"><span class="nav-text">0 项目设计需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-text">(1) 主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87"><span class="nav-text">(2)主要技术指标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-omnet-%E4%BB%BF%E7%9C%9F%E6%A8%A1%E5%9E%8B%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-text">1 omnet++仿真模型的详细设计方案和实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E4%B8%80%E4%BA%9B%E4%BE%8B%E7%A8%8B"><span class="nav-text">1.1 一些例程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-ieee802-11"><span class="nav-text">1.1.1 ieee802.11</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98"><span class="nav-text">1.2 一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E7%BB%93%E6%9E%84%E5%92%8C%E4%BF%A1%E5%99%AA%E6%AF%94%E9%98%88%E5%80%BC%E5%88%A4%E6%96%AD%E8%BF%9E%E9%80%9A%E4%B8%8E%E5%90%A6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">1.2.1 网络拓扑结构和信噪比阈值判断连通与否的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E4%BF%A1%E9%81%93%E6%A8%A1%E5%9D%97%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99-%E8%AE%B0%E5%BE%97%E6%9C%89%E4%B8%AAcChannel%E7%B1%BB%E5%8F%AF%E4%BB%A5%E6%89%A9%E5%B1%95%E4%B9%9F%E8%AE%B8%E5%8F%AF%E4%BB%A5%E8%80%83%E8%99%91%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BA%E8%BF%99%E4%B8%AA%E6%A8%A1%E5%9D%97"><span class="nav-text">1.2.2 信道模块如何编写(记得有个cChannel类可以扩展也许可以考虑动态创建这个模块)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E8%BF%90%E8%BE%93%E5%B1%82%E7%9A%84%E4%B8%80%E4%BA%9BTCP%E5%8D%8F%E8%AE%AE"><span class="nav-text">1.2.3 是否需要运输层的一些TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%AE%9E%E7%8E%B0%E8%BD%BD%E6%B3%A2%E7%9B%91%E5%90%AC"><span class="nav-text">1.2.4 数据链路层实现载波监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-%E5%85%B3%E4%BA%8E%E8%8A%82%E7%82%B9%E5%BD%93%E5%89%8D%E9%80%9F%E5%BA%A6-%E6%96%B9%E5%90%91-%E4%BD%8D%E7%BD%AE%E5%9D%90%E6%A0%87%E7%9A%84%E5%82%A8%E5%AD%98%E5%92%8C%E4%BB%BF%E7%9C%9F%E4%B8%AD%E6%98%BE%E7%A4%BA"><span class="nav-text">1.2.5 关于节点当前速度 方向 位置坐标的储存和仿真中显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="nav-text">1.3 一些重要参数在哪里</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E5%85%B3%E4%BA%8E%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%97%A0%E4%BA%BA%E8%89%87%E9%80%9F%E5%BA%A6%E5%92%8C%E6%9B%B4%E6%96%B0%E9%97%B4%E9%9A%94%E7%9A%84%E7%A1%AE%E5%AE%9A"><span class="nav-text">1.4 关于代码中无人艇速度和更新间隔的确定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%881"><span class="nav-text">方案1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%882"><span class="nav-text">方案2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%883-%E5%8B%89%E5%BC%BA%E5%8F%AF%E4%BB%A5%E7%94%A8"><span class="nav-text">方案3   勉强可以用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%A1%884-%E6%9C%89%E4%B8%80%E7%82%B9%E5%AF%86%E9%9B%86%E4%BA%86"><span class="nav-text">方案4  有一点密集了</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -397,8 +448,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
