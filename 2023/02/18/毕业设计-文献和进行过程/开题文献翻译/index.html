@@ -28,7 +28,7 @@
 <meta property="og:description" content="IEEE论文A New Simultaneous Wireless Power and Information Transfer System With Integrated Signal Magnetic Coupler 是我本科毕业设计开题时要求的翻译文献">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-18T09:29:58.000Z">
-<meta property="article:modified_time" content="2023-02-19T09:32:50.427Z">
+<meta property="article:modified_time" content="2023-02-19T12:52:46.100Z">
 <meta property="article:author" content="tomoyya">
 <meta property="article:tag" content="毕业设计">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-19 17:32:50" itemprop="dateModified" datetime="2023-02-19T17:32:50+08:00">2023-02-19</time>
+                <time title="修改时间：2023-02-19 20:52:46" itemprop="dateModified" datetime="2023-02-19T20:52:46+08:00">2023-02-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +256,12 @@
 <p>&amp; Z_{12} = -jk\omega M_{12} -jk\omega M_{1n} \<br>&amp; Z_{13} = -jk\omega M_{1n} \<br>&amp; Z_{23} = -Z_{nk} + jk\omega M_{2n} \tag{11}<br>\end{align}<br>$$<br>By solving the circuit based on the impedance matrix, we can get each mesh current as follows<br>通过根据阻抗矩阵求解电路，我们可以得到每个网孔电流，如下所示<br>$$<br>\dot{I}<em>{1k} = \frac{Z</em>{22} Z_{33} + Z^2_{23}} {\Delta} \dot{U}_{pk} \tag{12}<br>$$</p>
 <p>$$<br>\dot{I}<em>{2k} = \frac{Z</em>{12} Z_{33} - Z_{13} Z_{23}} {\Delta} \dot{U}_{pk} \tag{13}<br>$$</p>
 <p>$$<br>\dot{I}<em>{3k} = \frac{Z</em>{12} Z_{23} + Z_{13} Z_{22}} {\Delta} \dot{U}_{pk} \tag{14}<br>$$</p>
-<p>where<br>$$<br>\Delta = Z_{11}Z_{22}Z_{33} + Z_{11}Z^2_{23} + Z_{22}Z^2_{13} + Z_{33}Z^2_{12} .<br>$$<br>As illustrated in Section III, the cross-couplings between the integrated signal coil and the main coils can be negligible with the optimal design. Then, letting these cross-couplings zero to facilitate the analysis, and according to the relationship between $\dot{I}<em>{nk}$ and $\dot{I}</em>{3k}$ in Fig. 3, we can get<br>如第三节所示，在最佳设计下，集成信号线圈和主线圈之间的交叉耦合可以忽略不计。那么，为了方便分析，让这些交叉耦合为零，根据图3中 $\dot{I}<em>{nk}$ 和 $\dot{I}</em>{3k}$ 之间的关系，我们可以得到</p>
+<p>where<br>$$<br>\Delta = Z_{11}Z_{22}Z_{33} + Z_{11}Z^2_{23} + Z_{22}Z^2_{13} + Z_{33}Z^2_{12} .<br>$$<br>As illustrated in Section III, the cross-couplings between the integrated signal coil and the main coils can be negligible with the optimal design. Then, letting these cross-couplings zero to facilitate the analysis, and according to the relationship between $\dot{I}<em>{nk}$ and $\dot{I}</em>{3k}$ in Fig. 3, we can get<br>如第三节所示，在最佳设计下，集成信号线圈和主线圈之间的交叉耦合可以忽略不计。那么，为了方便分析，让这些交叉耦合为零，根据图3中 $\dot{I}<em>{nk}$ 和 $\dot{I}</em>{3k}$ 之间的关系，我们可以得到<br>$$<br>\dot{I}<em>{nk} = \frac{1/jk\omega C_2 + R</em>{eq}}{Z_{nk}} \dot{I}<em>{3k} \tag{15}<br>$$<br>Based on (14) and (15), the detection coil voltage $\dot{I}</em>{nk}$ and the load voltage $\dot{ I}<em>{Loadk}$ can be obtained as<br>根据（14）和（15），检测线圈电压 $\dot{I}</em>{nk}$ 和负载电压 $\dot{ I}<em>{Loadk}$ 可以得到如下结果<br>$$<br>V</em>{nk} = \begin{vmatrix}  \dot{I}_{nk}  \end{vmatrix} k\omega L_n \tag{16}<br>$$</p>
+<p>$$<br>V_{Loadk} = \frac{8}{\pi_2} \begin{vmatrix} \dot{I}_{3k} \end{vmatrix} R_L  \tag{17}<br>$$</p>
+<p>where $V_{nk}$ and $V_{Loadk}$ are the $k$th harmonic in the detection coil voltage and load voltage.<br>其中 $V_{nk}$ 和 $V_{Loadk}$ 是检测线圈电压和负载电压的第 $k$ 谐波。</p>
+<p>The fundamental component mainly drives the energy transfer, and the third harmonic is mainly consumed by the signal detecting module [13], [27]. Although a small part of the third harmonic current still flows through the load, it has little effect on $V_{Load}$ . Based on (16) and (17), we get $ V_{Load} = 8\begin{vmatrix} \dot{I}<em>{31} \end{vmatrix} R_L/\pi^2$ and $V_n = \begin{vmatrix} \dot{I}</em>{n3} \end{vmatrix}3\omega L_n .$<br>基波分量主要驱动能量转换器，而三次谐波主要由信号检测模块消耗[13],[27]。尽管一小部分三次谐波电流仍然流经负载，它对 $V_{Load}$ 的影响很小。根据（16）和（17），我们得到 $ V_{Load} = 8\begin{vmatrix} \dot{I}<em>{31} \end{vmatrix} R_L/\pi^2$ 以及 $V_n = \begin{vmatrix} \dot{I}</em>{n3} \end{vmatrix}3\omega L_n 。$</p>
+<h2 id="C-Information-Transmission-Based-on-Harmonic-Components"><a href="#C-Information-Transmission-Based-on-Harmonic-Components" class="headerlink" title="C. Information Transmission Based on Harmonic Components"></a>C. Information Transmission Based on Harmonic Components</h2><p>The data transmission is completed through the 2FSK modulation method, and the DFEE principle has been applied to amplify the voltage amplitude on the signal detecting coil indirectly. Therefore, simultaneous wireless power and information transmission can be realized by power transferring with the fundamental component and information with the third harmonic component.<br>数据传输是通过2FSK调制方法完成的，并应用DFEE原理间接放大了信号检测线圈上的电压幅度。因此，通过用基波分量传输功率和用三次谐波分量传输信息，可以实现同步的无线功率和信息传输。</p>
+<p>The inverter driving frequency is tuned to $f_0$ to transfer bit ”1”. When the transmission bit is ”0”, the inverter driving frequency shifts to $f_1$. In this paper, the deviation frequency is defined as<br>调整逆变器的驱动频率至 $f_0$ 以传输比特”1”。当传输比特为  “0”时，变频器驱动频率切换到 $f_1$。在本文中，偏差频率被定义为<br>$$<br>\Delta f = f_1 - f_0 \tag{18}<br>$$<br>Similarly, the deviation frequency of the third harmonic component can be obtained as<br>类似地，三次谐波分量的偏差频率可以得到为<br>$$<br>3(f_1 - f_0) = 3 \Delta f \tag{19}<br>$$</p>
 
     </div>
 
@@ -340,7 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-INTRODUCTION"><span class="nav-text">I. INTRODUCTION</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#II-SYSTEM-STRUCTURE-AND-THEORETICAL-ANALYSIS"><span class="nav-text">II. SYSTEM STRUCTURE AND THEORETICAL ANALYSIS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-System-Structure"><span class="nav-text">A. System Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Model-and-Analysis-of-the-Proposed-System"><span class="nav-text">B. Model and Analysis of the Proposed System</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-INTRODUCTION"><span class="nav-text">I. INTRODUCTION</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#II-SYSTEM-STRUCTURE-AND-THEORETICAL-ANALYSIS"><span class="nav-text">II. SYSTEM STRUCTURE AND THEORETICAL ANALYSIS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-System-Structure"><span class="nav-text">A. System Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Model-and-Analysis-of-the-Proposed-System"><span class="nav-text">B. Model and Analysis of the Proposed System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Information-Transmission-Based-on-Harmonic-Components"><span class="nav-text">C. Information Transmission Based on Harmonic Components</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
