@@ -28,7 +28,7 @@
 <meta property="og:description" content="IEEE论文A New Simultaneous Wireless Power and Information Transfer System With Integrated Signal Magnetic Coupler 是我本科毕业设计开题时要求的翻译文献">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-18T09:29:58.000Z">
-<meta property="article:modified_time" content="2023-02-19T03:58:06.354Z">
+<meta property="article:modified_time" content="2023-02-19T07:01:16.374Z">
 <meta property="article:author" content="tomoyya">
 <meta property="article:tag" content="毕业设计">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-19 11:58:06" itemprop="dateModified" datetime="2023-02-19T11:58:06+08:00">2023-02-19</time>
+                <time title="修改时间：2023-02-19 15:01:16" itemprop="dateModified" datetime="2023-02-19T15:01:16+08:00">2023-02-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,6 +240,10 @@
 <p>This article proposes a novel SWPIT system with an integrated magnetic coupler design to help save implementation cost and size and shrink output fluctuation during information transmission. In this paper, the power and information are simultaneously wireless transferred based on the deviation frequency enlargement effect (DFEE) principle. That is to say, the fundamental component is employed to transfer power and the third-harmonic component is used to transmit information.The signal modulation is implemented by binary FSK (2FSK) technology, and the signal coil integrated with the receiver side coil is designed to separate the fundamental and third-harmonic components.<br>本文提出了一种新型的SWPIT系统，该系统采用一体化的磁耦合器设计，来帮助节省实施成本和尺寸，并缩小信息传输过程中的输出波动。在本文中，基于偏差频率放大效应（DFEE）原理，电力和信息同时进行无线传输。也就是说，用基频分量来传输功率，三次谐波分量来传输信息。信号调制由二进制FSK（ 2FSK）技术实现，信号线圈与接收端线圈集成设计，以分离基波和三次谐波成分。</p>
 <p>Considering the cross-couplings between the integrated signal coil and the main coils, the equivalent circuit model of this proposed system is established and analyzed. The proposed magnetic coupler is simulated through finite element analysis (FEA) to select the optimal ferrite core structure and eliminate these unwanted crosscouplings. Finally, a 70-W power experimental prototype is built to verify the feasibility and effectiveness of the proposed SWPIT system.<br>考虑到集成信号线圈和主线圈之间的交叉耦合，我们建立并分析了该提议系统的等效电路模型。通过有限元分析（FEA）对所提出的磁耦合器进行了模拟，以选择最佳的铁氧体磁芯结构并消除这些有害的交叉耦合。最后，建立了一个70W功率的实验原型，来验证所提出的SWPIT系统的可行性和有效性。</p>
 <p>The rest of this paper is organized as follows: firstly, the system structure is given in Section II, and it also demonstrates the working principle and theoretical analysis of the proposed system. Then, the proposed integrated magnetic coupler and the FEA are studied in detail in Section III. Later in Section IV, the correctness and feasibility of the proposed system are verified by the experimental results. Finally, the conclusion is drawn in Section V.<br>本文其余部分的组织结构如下：首先，在第二节中给出了系统的结构，同时也展示了所提系统的工作原理和理论分析。然后，在第三节中详细研究了所提出的集成磁耦合器和有限元分析。之后在第四节中，通过实验结果验证了所提系统的正确性和可行性。最后，在第五节中得出结论。</p>
+<h1 id="II-SYSTEM-STRUCTURE-AND-THEORETICAL-ANALYSIS"><a href="#II-SYSTEM-STRUCTURE-AND-THEORETICAL-ANALYSIS" class="headerlink" title="II. SYSTEM STRUCTURE AND THEORETICAL ANALYSIS"></a>II. SYSTEM STRUCTURE AND THEORETICAL ANALYSIS</h1><h2 id="A-System-Structure"><a href="#A-System-Structure" class="headerlink" title="A. System Structure"></a>A. System Structure</h2><p>The schematic circuit of the proposed SWPIT system with the integrated signal coil is depicted in Fig. 1. The system consists of a transmitting module, a modulation circuit, a secondary picking module and a demodulation circuit. The transmitting module is constituted by a full-bridge inverter (S1 - S4), a dc power supply Uin, an input filter capacitor Cin and a transmitting compensation network (a transmitting coil L1 and a resonant capacitor C1). The secondary picking module is constituted of a power receiving module and a signal detecting module. The former is composed of a picking coil L2, a resonant capacitor C2, a full-bridge rectifier (D1 - D4), an output filter capacitor Co and a load RL. The last module comprises a signal coil Ln and a resonant capacitor Cn.<br>图1描述了所提出的带有集成信号线圈的SWPIT系统的电路原理图。该系统由一个发射模块、一个调制电路、一个二次选通模块和一个解调电路组成。发射模块由一个全桥逆变器（S1 - S4 ）、一个直流电源Uin 、一个输入滤波电容Cin 和一个发射补偿网络（一个发射线圈L1 和一个谐振电容C1）构成。二次选通模块由电源接收模块和信号检测模块构成。前者由一个拾取线圈L2、一个谐振电容C2、一个全桥整流器（D1 - D4）、一个输出滤波电容Co和一个负载RL 组成。最后一个模块由一个信号线圈Ln和一个谐振电容Cn 组成。</p>
+<p>R1, R2 and Rn are the internal resistors of L1, L2 and Ln, respectively. Vp and Vs are the input and output voltages of the compensation topology, and Ip and Is are the input and output currents of the compensation topology. Vn represents the voltage of the signal coil, which is detected and used to demodulate the transmit information through a demodulation circuit.<br><em>R</em>1 、<em>R</em>2 和Rn分别为L1 、L2和Ln的内部电阻。Vp和Vs是补偿拓扑结构的输入和输出电压，而Ip和Is是补偿拓扑结构的输入和输出电流。Vn代表信号线圈的电压，它被检测并用于通过解调电路对发射信息进行解调。</p>
+<p>To achieve highly efficient wireless power transmission, the transmitting and receiving compensation should satisfy<br>为了实现高效的无线功率传输，发射和接收补偿应该满足</p>
+<p>$$ x^1\tag1$$</p>
 
     </div>
 
@@ -323,7 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-INTRODUCTION"><span class="nav-text">I. INTRODUCTION</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-INTRODUCTION"><span class="nav-text">I. INTRODUCTION</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#II-SYSTEM-STRUCTURE-AND-THEORETICAL-ANALYSIS"><span class="nav-text">II. SYSTEM STRUCTURE AND THEORETICAL ANALYSIS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-System-Structure"><span class="nav-text">A. System Structure</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
